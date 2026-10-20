@@ -12,6 +12,10 @@ use TYPO3\CMS\Core\SystemResource\Publishing\SystemResourcePublisherInterface;
 use TYPO3\CMS\Core\SystemResource\SystemResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+use function array_rand;
+use function count;
+use function sprintf;
+
 final readonly class RandomizeLoginBackground
 {
     public function __construct(

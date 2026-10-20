@@ -9,7 +9,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['proc
 
 (static function (): void {
     $generated = \TYPO3\CMS\Core\Core\Environment::getConfigPath() . '/system/typo3_chameleon_login.generated.php';
-    if (!is_file($generated)) {
+    if (false === is_file($generated)) {
         return;
     }
 

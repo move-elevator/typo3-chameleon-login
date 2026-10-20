@@ -8,6 +8,9 @@ use MoveElevator\Typo3ChameleonLogin\Style\LoginStyles;
 use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Page\Event\BeforeStylesheetsRenderingEvent;
 
+use function sprintf;
+use function trim;
+
 final class AddLoginStyles
 {
     #[AsEventListener('typo3-chameleon-login/login-styles')]
@@ -32,7 +35,7 @@ final class AddLoginStyles
             (array)($configuration['loginBackgroundGradient'] ?? []),
             (string)($configuration['loginBackgroundGradientSpeed'] ?? '')
         );
-        if ($gradientVariables !== '') {
+        if ('' !== $gradientVariables) {
             $assetCollector->addStyleSheet(
                 'typo3-chameleon-login-gradient',
                 'EXT:typo3_chameleon_login/Resources/Public/Css/Gradient.css'
