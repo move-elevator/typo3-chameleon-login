@@ -1,16 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2026-05-22T00:00:00Z" product-name="typo3_chameleon_login">
-		<header/>
-		<body>
-			<trans-unit id="command.activeSeason">
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="de">
+	<file id="f1">
+		<unit id="command.activeSeason">
+			<segment>
 				<source>Active season: %s</source>
 				<target>Aktive Saison: %s</target>
-			</trans-unit>
-			<trans-unit id="command.noActiveSeason">
+			</segment>
+		</unit>
+		<unit id="command.noActiveSeason">
+			<segment>
 				<source>No active season found – defaults apply.</source>
 				<target>Keine aktive Saison gefunden – Defaults greifen.</target>
-			</trans-unit>
-		</body>
+			</segment>
+		</unit>
 	</file>
 </xliff>

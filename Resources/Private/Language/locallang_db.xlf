@@ -1,137 +1,220 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2026-05-22T00:00:00Z" product-name="typo3_chameleon_login">
-		<header/>
-		<body>
-			<trans-unit id="season">
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
+	<file id="f1">
+		<unit id="season">
+			<segment>
 				<source>Login Season</source>
-			</trans-unit>
-			<trans-unit id="season.title">
+			</segment>
+		</unit>
+		<unit id="season.title">
+			<segment>
 				<source>Title</source>
-			</trans-unit>
-			<trans-unit id="season.backgroundType">
+			</segment>
+		</unit>
+		<unit id="season.backgroundType">
+			<segment>
 				<source>Background type</source>
-			</trans-unit>
-			<trans-unit id="season.backgroundType.image">
+			</segment>
+		</unit>
+		<unit id="season.backgroundType.image">
+			<segment>
 				<source>Image</source>
-			</trans-unit>
-			<trans-unit id="season.backgroundType.gradient">
+			</segment>
+		</unit>
+		<unit id="season.backgroundType.gradient">
+			<segment>
 				<source>Animated gradient</source>
-			</trans-unit>
-			<trans-unit id="season.gradientColor1">
+			</segment>
+		</unit>
+		<unit id="season.gradientColor1">
+			<segment>
 				<source>Gradient color 1</source>
-			</trans-unit>
-			<trans-unit id="season.gradientColor2">
+			</segment>
+		</unit>
+		<unit id="season.gradientColor2">
+			<segment>
 				<source>Gradient color 2</source>
-			</trans-unit>
-			<trans-unit id="season.gradientColor3">
+			</segment>
+		</unit>
+		<unit id="season.gradientColor3">
+			<segment>
 				<source>Gradient color 3 (optional)</source>
-			</trans-unit>
-			<trans-unit id="season.gradientColor4">
+			</segment>
+		</unit>
+		<unit id="season.gradientColor4">
+			<segment>
 				<source>Gradient color 4 (optional)</source>
-			</trans-unit>
-			<trans-unit id="season.gradientSpeed">
+			</segment>
+		</unit>
+		<unit id="season.gradientSpeed">
+			<segment>
 				<source>Animation speed</source>
-			</trans-unit>
-			<trans-unit id="season.gradientSpeed.slow">
+			</segment>
+		</unit>
+		<unit id="season.gradientSpeed.slow">
+			<segment>
 				<source>Slow</source>
-			</trans-unit>
-			<trans-unit id="season.gradientSpeed.medium">
+			</segment>
+		</unit>
+		<unit id="season.gradientSpeed.medium">
+			<segment>
 				<source>Medium</source>
-			</trans-unit>
-			<trans-unit id="season.gradientSpeed.fast">
+			</segment>
+		</unit>
+		<unit id="season.gradientSpeed.fast">
+			<segment>
 				<source>Fast</source>
-			</trans-unit>
-			<trans-unit id="season.image">
+			</segment>
+		</unit>
+		<unit id="season.image">
+			<segment>
 				<source>Background image</source>
-			</trans-unit>
-			<trans-unit id="season.image.description">
+			</segment>
+		</unit>
+		<unit id="season.image.description">
+			<segment>
 				<source>With several images, a random one is shown on each visit of the login screen.</source>
-			</trans-unit>
-			<trans-unit id="season.validFrom">
+			</segment>
+		</unit>
+		<unit id="season.validFrom">
+			<segment>
 				<source>Valid from</source>
-			</trans-unit>
-			<trans-unit id="season.validUntil">
+			</segment>
+		</unit>
+		<unit id="season.validUntil">
+			<segment>
 				<source>Valid until</source>
-			</trans-unit>
-			<trans-unit id="season.recurring">
+			</segment>
+		</unit>
+		<unit id="season.recurring">
+			<segment>
 				<source>Recurring every year</source>
-			</trans-unit>
-			<trans-unit id="season.recurring.description">
+			</segment>
+		</unit>
+		<unit id="season.recurring.description">
+			<segment>
 				<source>Only month and day are evaluated, the year is ignored.</source>
-			</trans-unit>
-			<trans-unit id="season.priority">
+			</segment>
+		</unit>
+		<unit id="season.priority">
+			<segment>
 				<source>Priority (higher overrides lower)</source>
-			</trans-unit>
-			<trans-unit id="season.backgroundColor">
+			</segment>
+		</unit>
+		<unit id="season.backgroundColor">
+			<segment>
 				<source>Background color</source>
-			</trans-unit>
-			<trans-unit id="season.backgroundColor.description">
+			</segment>
+		</unit>
+		<unit id="season.backgroundColor.description">
+			<segment>
 				<source>Shown behind the image when the image is smaller than the viewport.</source>
-			</trans-unit>
-			<trans-unit id="season.effect">
+			</segment>
+		</unit>
+		<unit id="season.effect">
+			<segment>
 				<source>Effect</source>
-			</trans-unit>
-			<trans-unit id="season.effect.description">
+			</segment>
+		</unit>
+		<unit id="season.effect.description">
+			<segment>
 				<source>Animated effect on top of the background. Not shown to users who prefer reduced motion.</source>
-			</trans-unit>
-			<trans-unit id="season.effect.none">
+			</segment>
+		</unit>
+		<unit id="season.effect.none">
+			<segment>
 				<source>None</source>
-			</trans-unit>
-			<trans-unit id="season.effect.snow">
+			</segment>
+		</unit>
+		<unit id="season.effect.snow">
+			<segment>
 				<source>Snowfall</source>
-			</trans-unit>
-			<trans-unit id="season.effect.leaves">
+			</segment>
+		</unit>
+		<unit id="season.effect.leaves">
+			<segment>
 				<source>Falling leaves</source>
-			</trans-unit>
-			<trans-unit id="season.effect.blossoms">
+			</segment>
+		</unit>
+		<unit id="season.effect.blossoms">
+			<segment>
 				<source>Cherry blossoms</source>
-			</trans-unit>
-			<trans-unit id="season.effect.confetti">
+			</segment>
+		</unit>
+		<unit id="season.effect.confetti">
+			<segment>
 				<source>Confetti</source>
-			</trans-unit>
-			<trans-unit id="season.effect.hearts">
+			</segment>
+		</unit>
+		<unit id="season.effect.hearts">
+			<segment>
 				<source>Rising hearts</source>
-			</trans-unit>
-			<trans-unit id="season.logo">
+			</segment>
+		</unit>
+		<unit id="season.logo">
+			<segment>
 				<source>Login logo</source>
-			</trans-unit>
-			<trans-unit id="season.logo.description">
+			</segment>
+		</unit>
+		<unit id="season.logo.description">
+			<segment>
 				<source>Replaces the logo above the login form while this season is active.</source>
-			</trans-unit>
-			<trans-unit id="season.logoAlt">
+			</segment>
+		</unit>
+		<unit id="season.logoAlt">
+			<segment>
 				<source>Alternative text of the logo</source>
-			</trans-unit>
-			<trans-unit id="season.highlightColor">
+			</segment>
+		</unit>
+		<unit id="season.highlightColor">
+			<segment>
 				<source>Highlight color</source>
-			</trans-unit>
-			<trans-unit id="season.highlightColor.description">
+			</segment>
+		</unit>
+		<unit id="season.highlightColor.description">
+			<segment>
 				<source>Color of the login button and the accent line, e.g. red for Christmas.</source>
-			</trans-unit>
-			<trans-unit id="season.footnote">
+			</segment>
+		</unit>
+		<unit id="season.footnote">
+			<segment>
 				<source>Footnote</source>
-			</trans-unit>
-			<trans-unit id="season.footnote.description">
+			</segment>
+		</unit>
+		<unit id="season.footnote.description">
+			<segment>
 				<source>Short text below the login form, e.g. a seasonal greeting.</source>
-			</trans-unit>
-			<trans-unit id="season.hidden">
+			</segment>
+		</unit>
+		<unit id="season.hidden">
+			<segment>
 				<source>Disabled</source>
-			</trans-unit>
-			<trans-unit id="tab.general">
+			</segment>
+		</unit>
+		<unit id="tab.general">
+			<segment>
 				<source>General</source>
-			</trans-unit>
-			<trans-unit id="tab.appearance">
+			</segment>
+		</unit>
+		<unit id="tab.appearance">
+			<segment>
 				<source>Appearance</source>
-			</trans-unit>
-			<trans-unit id="tab.branding">
+			</segment>
+		</unit>
+		<unit id="tab.branding">
+			<segment>
 				<source>Branding</source>
-			</trans-unit>
-			<trans-unit id="tab.period">
+			</segment>
+		</unit>
+		<unit id="tab.period">
+			<segment>
 				<source>Period</source>
-			</trans-unit>
-			<trans-unit id="tab.access">
+			</segment>
+		</unit>
+		<unit id="tab.access">
+			<segment>
 				<source>Access</source>
-			</trans-unit>
-		</body>
+			</segment>
+		</unit>
 	</file>
 </xliff>
