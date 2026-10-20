@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use TYPO3\CMS\Core\Resource\FileType;
-
 return [
     'ctrl' => [
         'title' => 'typo3_chameleon_login.db:season',
@@ -47,16 +45,6 @@ return [
                 'type' => 'file',
                 'allowed' => 'common-image-types',
                 'maxitems' => 1,
-                'overrideChildTca' => [
-                    'types' => [
-                        '0' => [
-                            'showitem' => '--palette--;;filePalette',
-                        ],
-                        FileType::IMAGE->value => [
-                            'showitem' => 'crop, --palette--;;filePalette',
-                        ],
-                    ],
-                ],
             ],
         ],
         'valid_from' => [
