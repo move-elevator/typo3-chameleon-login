@@ -2,11 +2,6 @@
 
 declare(strict_types=1);
 
-use ComposerUnused\ComposerUnused\Configuration\{Configuration, NamedFilter};
+use ComposerUnused\ComposerUnused\Configuration\Configuration;
 
-return static function (Configuration $config): Configuration {
-    // Provides the login form that consumes the generated loginBackgroundImage setting
-    $config->addNamedFilter(NamedFilter::fromString('typo3/cms-backend'));
-
-    return $config;
-};
+return static fn (Configuration $config): Configuration => $config;
