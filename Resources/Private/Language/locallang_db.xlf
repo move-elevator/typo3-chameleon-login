@@ -78,6 +78,18 @@
 			<trans-unit id="season.effect.snow">
 				<source>Snowfall</source>
 			</trans-unit>
+			<trans-unit id="season.effect.leaves">
+				<source>Falling leaves</source>
+			</trans-unit>
+			<trans-unit id="season.effect.blossoms">
+				<source>Cherry blossoms</source>
+			</trans-unit>
+			<trans-unit id="season.effect.confetti">
+				<source>Confetti</source>
+			</trans-unit>
+			<trans-unit id="season.effect.hearts">
+				<source>Rising hearts</source>
+			</trans-unit>
 			<trans-unit id="season.hidden">
 				<source>Disabled</source>
 			</trans-unit>

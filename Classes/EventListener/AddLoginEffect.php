@@ -11,7 +11,7 @@ use TYPO3\CMS\Core\Page\PageRenderer;
 
 final readonly class AddLoginEffect
 {
-    public const array EFFECTS = ['snow'];
+    public const array EFFECTS = ['snow', 'leaves', 'blossoms', 'confetti', 'hearts'];
 
     public function __construct(
         private PageRenderer $pageRenderer,

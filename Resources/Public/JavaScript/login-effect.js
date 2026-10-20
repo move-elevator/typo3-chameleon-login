@@ -1,6 +1,10 @@
+import { blossoms } from '@move-elevator/typo3-chameleon-login/presets/blossoms.js';
+import { confetti } from '@move-elevator/typo3-chameleon-login/presets/confetti.js';
+import { hearts } from '@move-elevator/typo3-chameleon-login/presets/hearts.js';
+import { leaves } from '@move-elevator/typo3-chameleon-login/presets/leaves.js';
 import { snow } from '@move-elevator/typo3-chameleon-login/presets/snow.js';
 
-const presets = { snow };
+const presets = { snow, leaves, blossoms, confetti, hearts };
 
 const MAX_PARTICLES = 200;
 const PIXELS_PER_PARTICLE = 10000;
@@ -44,7 +48,7 @@ const init = (effect) => {
     canvas.width = Math.round(width * ratio);
     canvas.height = Math.round(height * ratio);
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
-    const count = Math.min(MAX_PARTICLES, Math.round((width * height) / PIXELS_PER_PARTICLE));
+    const count = Math.min(MAX_PARTICLES, Math.round(((width * height) / PIXELS_PER_PARTICLE) * (preset.density ?? 1)));
     particles = Array.from({ length: count }, () => preset.spawn(width, height, true));
   };
 

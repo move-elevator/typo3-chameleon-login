@@ -17,7 +17,7 @@ This extension changes the background image of the TYPO3 backend login with the 
 
 - Season records with title, image, period, optional background color and priority
 - Animated color gradient as an alternative to the background image
-- Optional animated effects per season, e.g. snowfall in winter
+- Optional animated effects per season: snowfall, falling leaves, cherry blossoms, confetti or rising hearts
 - Yearly recurring seasons, including periods across New Year (e.g. 20.12. – 06.01.)
 - Higher priority wins when several seasons overlap
 - Changes to season records take effect on the login screen immediately after saving
@@ -98,6 +98,10 @@ A season can show an animated effect on the login screen:
 | Effect | Description |
 |--------|-------------|
 | `snow` | Falling snowflakes |
+| `leaves` | Falling autumn leaves |
+| `blossoms` | Drifting cherry blossom petals |
+| `confetti` | Colorful confetti, e.g. for New Year |
+| `hearts` | Rising hearts, e.g. for Valentine's Day |
 
 Effects are drawn on a single `<canvas>` behind the login form and only load on the login screen. They respect `prefers-reduced-motion` and pause while the browser tab is hidden.
 
