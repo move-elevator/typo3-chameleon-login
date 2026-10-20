@@ -50,7 +50,7 @@ vendor/bin/typo3 cache:flush
 
 1. Create a sys folder, e.g. "Login seasons".
 2. Add records of type "Login season" with the list module.
-3. Required fields: title, valid from, valid until and either an image or at least two gradient colors.
+3. Required fields: title, valid from, valid until and either an image or at least two gradient colors. Background images must be AVIF or WebP, logos SVG, AVIF or WebP. The extension delivers the original file, so only compressed modern formats are accepted.
 4. Optional fields: background color, effect, logo, highlight color, footnote, yearly recurring, priority, disabled.
 5. Schedule the command `chameleon-login:apply` in the scheduler module, e.g. daily at night.
 

@@ -73,7 +73,7 @@
 		</unit>
 		<unit id="season.image.description">
 			<segment>
-				<source>With several images, a random one is shown on each visit of the login screen.</source>
+				<source>AVIF or WebP. With several images, a random one is shown on each visit of the login screen.</source>
 			</segment>
 		</unit>
 		<unit id="season.validFrom">
@@ -158,7 +158,7 @@
 		</unit>
 		<unit id="season.logo.description">
 			<segment>
-				<source>Replaces the logo above the login form while this season is active.</source>
+				<source>SVG, AVIF or WebP. Replaces the logo above the login form while this season is active.</source>
 			</segment>
 		</unit>
 		<unit id="season.logoAlt">

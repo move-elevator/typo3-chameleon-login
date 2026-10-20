@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use TYPO3\CMS\Core\Resource\FileType;
+
 return [
     'ctrl' => [
         'title' => 'typo3_chameleon_login.db:season',
@@ -44,8 +46,14 @@ return [
             'displayCond' => 'FIELD:background_type:=:image',
             'config' => [
                 'type' => 'file',
-                'allowed' => 'common-image-types',
+                'allowed' => 'avif,webp',
                 'maxitems' => 10,
+                'overrideChildTca' => [
+                    'types' => [
+                        '0' => ['showitem' => '--palette--;;filePalette'],
+                        FileType::IMAGE->value => ['showitem' => '--palette--;;filePalette'],
+                    ],
+                ],
             ],
         ],
         'valid_from' => [
@@ -164,8 +172,14 @@ return [
             'description' => 'typo3_chameleon_login.db:season.logo.description',
             'config' => [
                 'type' => 'file',
-                'allowed' => 'common-image-types',
+                'allowed' => 'svg,avif,webp',
                 'maxitems' => 1,
+                'overrideChildTca' => [
+                    'types' => [
+                        '0' => ['showitem' => '--palette--;;filePalette'],
+                        FileType::IMAGE->value => ['showitem' => '--palette--;;filePalette'],
+                    ],
+                ],
             ],
         ],
         'logo_alt' => [

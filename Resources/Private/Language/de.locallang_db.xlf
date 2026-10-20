@@ -87,8 +87,8 @@
 		</unit>
 		<unit id="season.image.description">
 			<segment>
-				<source>With several images, a random one is shown on each visit of the login screen.</source>
-				<target>Bei mehreren Bildern wird bei jedem Aufruf des Logins ein zufälliges angezeigt.</target>
+				<source>AVIF or WebP. With several images, a random one is shown on each visit of the login screen.</source>
+				<target>AVIF oder WebP. Bei mehreren Bildern wird bei jedem Aufruf des Logins ein zufälliges angezeigt.</target>
 			</segment>
 		</unit>
 		<unit id="season.validFrom">
@@ -189,8 +189,8 @@
 		</unit>
 		<unit id="season.logo.description">
 			<segment>
-				<source>Replaces the logo above the login form while this season is active.</source>
-				<target>Ersetzt das Logo über dem Login-Formular, solange diese Saison aktiv ist.</target>
+				<source>SVG, AVIF or WebP. Replaces the logo above the login form while this season is active.</source>
+				<target>SVG, AVIF oder WebP. Ersetzt das Logo über dem Login-Formular, solange diese Saison aktiv ist.</target>
 			</segment>
 		</unit>
 		<unit id="season.logoAlt">
