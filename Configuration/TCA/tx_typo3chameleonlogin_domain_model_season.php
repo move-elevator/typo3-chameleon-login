@@ -91,6 +91,19 @@ return [
                 'searchable' => false,
             ],
         ],
+        'effect' => [
+            'label' => 'typo3_chameleon_login.db:season.effect',
+            'description' => 'typo3_chameleon_login.db:season.effect.description',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['label' => 'typo3_chameleon_login.db:season.effect.none', 'value' => ''],
+                    ['label' => 'typo3_chameleon_login.db:season.effect.snow', 'value' => 'snow'],
+                ],
+                'default' => '',
+            ],
+        ],
         'hidden' => [
             'label' => 'typo3_chameleon_login.db:season.hidden',
             'config' => [
@@ -103,7 +116,8 @@ return [
     'types' => [
         '0' => [
             'showitem' => '
-                --div--;typo3_chameleon_login.db:tab.general, title, image, background_color,
+                --div--;typo3_chameleon_login.db:tab.general, title,
+                --div--;typo3_chameleon_login.db:tab.appearance, image, background_color, effect,
                 --div--;typo3_chameleon_login.db:tab.period, valid_from, valid_until, recurring, priority,
                 --div--;typo3_chameleon_login.db:tab.access, hidden
             ',

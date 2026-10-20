@@ -43,6 +43,22 @@
 				<source>Shown behind the image when the image is smaller than the viewport.</source>
 				<target>Wird hinter dem Bild angezeigt, falls dieses kleiner als der Viewport ist.</target>
 			</trans-unit>
+			<trans-unit id="season.effect">
+				<source>Effect</source>
+				<target>Effekt</target>
+			</trans-unit>
+			<trans-unit id="season.effect.description">
+				<source>Animated effect on top of the background. Not shown to users who prefer reduced motion.</source>
+				<target>Animierter Effekt über dem Hintergrund. Wird nicht angezeigt, wenn reduzierte Bewegung bevorzugt wird.</target>
+			</trans-unit>
+			<trans-unit id="season.effect.none">
+				<source>None</source>
+				<target>Keiner</target>
+			</trans-unit>
+			<trans-unit id="season.effect.snow">
+				<source>Snowfall</source>
+				<target>Schneefall</target>
+			</trans-unit>
 			<trans-unit id="season.hidden">
 				<source>Disabled</source>
 				<target>Deaktiviert</target>
@@ -50,6 +66,10 @@
 			<trans-unit id="tab.general">
 				<source>General</source>
 				<target>Allgemein</target>
+			</trans-unit>
+			<trans-unit id="tab.appearance">
+				<source>Appearance</source>
+				<target>Darstellung</target>
 			</trans-unit>
 			<trans-unit id="tab.period">
 				<source>Period</source>
