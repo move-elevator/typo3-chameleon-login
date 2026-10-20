@@ -16,6 +16,7 @@ This extension changes the background image of the TYPO3 backend login with the 
 ## ✨ Features
 
 - Season records with title, image, period, optional background color and priority
+- Several images per season, a random one is shown on each visit of the login screen
 - Animated color gradient as an alternative to the background image
 - Seasonal branding: login logo, highlight color and footnote, e.g. a red button and "Happy holidays" at Christmas
 - Optional animated effects per season: snowfall, falling leaves, cherry blossoms, confetti or rising hearts
@@ -64,6 +65,7 @@ The extension writes `config/system/typo3_chameleon_login.generated.php` wheneve
 | Setting | Description |
 |---------|-------------|
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['loginBackgroundImage']` | Public URL of the active season's image |
+| `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundImages']` | All image URLs of the active season if it has more than one. The login screen picks one at random, `loginBackgroundImage` holds the first one as fallback |
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['loginLogo']` and `['loginLogoAlt']` | Public URL and alternative text of the active season's logo |
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['loginHighlightColor']` | Highlight color of the active season (hex) |
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['loginFootnote']` | Footnote of the active season |

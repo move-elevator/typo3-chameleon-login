@@ -59,6 +59,10 @@
 				<source>Background image</source>
 				<target>Hintergrundbild</target>
 			</trans-unit>
+			<trans-unit id="season.image.description">
+				<source>With several images, a random one is shown on each visit of the login screen.</source>
+				<target>Bei mehreren Bildern wird bei jedem Aufruf des Logins ein zufälliges angezeigt.</target>
+			</trans-unit>
 			<trans-unit id="season.validFrom">
 				<source>Valid from</source>
 				<target>Gültig ab</target>
