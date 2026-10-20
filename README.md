@@ -16,6 +16,7 @@ This extension changes the background image of the TYPO3 backend login with the 
 ## ✨ Features
 
 - Season records with title, image, period, optional background color and priority
+- Animated color gradient as an alternative to the background image
 - Optional animated effects per season, e.g. snowfall in winter
 - Yearly recurring seasons, including periods across New Year (e.g. 20.12. – 06.01.)
 - Higher priority wins when several seasons overlap
@@ -47,7 +48,7 @@ vendor/bin/typo3 cache:flush
 
 1. Create a sys folder, e.g. "Login seasons".
 2. Add records of type "Login season" with the list module.
-3. Required fields: title, image, valid from, valid until.
+3. Required fields: title, valid from, valid until and either an image or at least two gradient colors.
 4. Optional fields: background color, effect, yearly recurring, priority, disabled.
 5. Schedule the command `chameleon-login:apply` in the scheduler module, e.g. daily at night.
 
@@ -63,6 +64,8 @@ The extension writes `config/system/typo3_chameleon_login.generated.php` wheneve
 |---------|-------------|
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['loginBackgroundImage']` | Public URL of the active season's image |
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundColor']` | Background color of the active season (hex), rendered as CSS custom property `--chameleon-login-bg-color` |
+| `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundGradient']` | Gradient colors (hex) of the active season, if it uses the background type "Animated gradient" |
+| `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundGradientSpeed']` | Gradient animation speed: `slow`, `medium` or `fast` |
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['effect']` | Effect of the active season, e.g. `snow` |
 
 If no season is active, the file contains an empty array and the TYPO3 defaults apply. Do not edit the file manually, the next change or run overwrites it.
@@ -83,6 +86,10 @@ The command checks all enabled seasons, ordered by priority (highest first), the
 
 - **One-time seasons** match between the "valid from" and "valid until" dates.
 - **Recurring seasons** only compare day and month, so they match every year. Periods across New Year are supported.
+
+### Animated gradient
+
+Instead of an image, a season can use the background type "Animated gradient" with two to four colors. The gradient slowly drifts across the login screen. For users who prefer reduced motion, it is shown as a static gradient.
 
 ### Effects
 
