@@ -17,6 +17,7 @@ This extension changes the background image of the TYPO3 backend login with the 
 
 - Season records with title, image, period, optional background color and priority
 - Animated color gradient as an alternative to the background image
+- Seasonal branding: login logo, highlight color and footnote, e.g. a red button and "Happy holidays" at Christmas
 - Optional animated effects per season: snowfall, falling leaves, cherry blossoms, confetti or rising hearts
 - Yearly recurring seasons, including periods across New Year (e.g. 20.12. – 06.01.)
 - Higher priority wins when several seasons overlap
@@ -49,7 +50,7 @@ vendor/bin/typo3 cache:flush
 1. Create a sys folder, e.g. "Login seasons".
 2. Add records of type "Login season" with the list module.
 3. Required fields: title, valid from, valid until and either an image or at least two gradient colors.
-4. Optional fields: background color, effect, yearly recurring, priority, disabled.
+4. Optional fields: background color, effect, logo, highlight color, footnote, yearly recurring, priority, disabled.
 5. Schedule the command `chameleon-login:apply` in the scheduler module, e.g. daily at night.
 
 Saving, hiding, deleting or moving a season record applies the active season right away. The scheduled command is still needed so the login screen switches to the next season when its period starts.
@@ -63,6 +64,9 @@ The extension writes `config/system/typo3_chameleon_login.generated.php` wheneve
 | Setting | Description |
 |---------|-------------|
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['loginBackgroundImage']` | Public URL of the active season's image |
+| `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['loginLogo']` and `['loginLogoAlt']` | Public URL and alternative text of the active season's logo |
+| `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['loginHighlightColor']` | Highlight color of the active season (hex) |
+| `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['loginFootnote']` | Footnote of the active season |
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundColor']` | Background color of the active season (hex), rendered as CSS custom property `--chameleon-login-bg-color` |
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundGradient']` | Gradient colors (hex) of the active season, if it uses the background type "Animated gradient" |
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundGradientSpeed']` | Gradient animation speed: `slow`, `medium` or `fast` |

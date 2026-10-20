@@ -90,6 +90,27 @@
 			<trans-unit id="season.effect.hearts">
 				<source>Rising hearts</source>
 			</trans-unit>
+			<trans-unit id="season.logo">
+				<source>Login logo</source>
+			</trans-unit>
+			<trans-unit id="season.logo.description">
+				<source>Replaces the logo above the login form while this season is active.</source>
+			</trans-unit>
+			<trans-unit id="season.logoAlt">
+				<source>Alternative text of the logo</source>
+			</trans-unit>
+			<trans-unit id="season.highlightColor">
+				<source>Highlight color</source>
+			</trans-unit>
+			<trans-unit id="season.highlightColor.description">
+				<source>Color of the login button and the accent line, e.g. red for Christmas.</source>
+			</trans-unit>
+			<trans-unit id="season.footnote">
+				<source>Footnote</source>
+			</trans-unit>
+			<trans-unit id="season.footnote.description">
+				<source>Short text below the login form, e.g. a seasonal greeting.</source>
+			</trans-unit>
 			<trans-unit id="season.hidden">
 				<source>Disabled</source>
 			</trans-unit>
@@ -98,6 +119,9 @@
 			</trans-unit>
 			<trans-unit id="tab.appearance">
 				<source>Appearance</source>
+			</trans-unit>
+			<trans-unit id="tab.branding">
+				<source>Branding</source>
 			</trans-unit>
 			<trans-unit id="tab.period">
 				<source>Period</source>

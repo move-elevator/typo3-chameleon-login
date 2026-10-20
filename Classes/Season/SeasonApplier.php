@@ -30,30 +30,40 @@ final readonly class SeasonApplier
     public function apply(): ?array
     {
         $season = $this->findActiveSeason();
-        $config = [];
-
-        if ($season !== null) {
-            if (($season['background_type'] ?? '') === 'gradient') {
-                $config['EXTENSIONS']['typo3_chameleon_login'] = $this->resolveGradient($season);
-            } else {
-                $image = $this->resolveImagePath((int)$season['uid']);
-                if ($image !== null) {
-                    $config['EXTENSIONS']['backend']['loginBackgroundImage'] = $image;
-                }
-            }
-            $backgroundColor = (string)($season['background_color'] ?? '');
-            if ($backgroundColor !== '') {
-                $config['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundColor'] = $backgroundColor;
-            }
-            $effect = (string)($season['effect'] ?? '');
-            if ($effect !== '') {
-                $config['EXTENSIONS']['typo3_chameleon_login']['effect'] = $effect;
-            }
-        }
-
-        $this->writeConfig($config);
+        $this->writeConfig($season === null ? [] : $this->buildConfig($season));
 
         return $season;
+    }
+
+    /**
+     * @param array<string, mixed> $season
+     * @return array<string, mixed>
+     */
+    private function buildConfig(array $season): array
+    {
+        $backend = $this->resolveBranding($season);
+        $extension = [];
+
+        if (($season['background_type'] ?? '') === 'gradient') {
+            $extension = $this->resolveGradient($season);
+        } else {
+            $image = $this->resolveImagePath((int)$season['uid'], 'image');
+            if ($image !== null) {
+                $backend['loginBackgroundImage'] = $image;
+            }
+        }
+        $backgroundColor = (string)($season['background_color'] ?? '');
+        if ($backgroundColor !== '') {
+            $extension['loginBackgroundColor'] = $backgroundColor;
+        }
+        $effect = (string)($season['effect'] ?? '');
+        if ($effect !== '') {
+            $extension['effect'] = $effect;
+        }
+
+        $extensions = array_filter(['backend' => $backend, 'typo3_chameleon_login' => $extension]);
+
+        return $extensions === [] ? [] : ['EXTENSIONS' => $extensions];
     }
 
     /**
@@ -102,9 +112,35 @@ final readonly class SeasonApplier
         ];
     }
 
-    private function resolveImagePath(int $uid): ?string
+    /**
+     * Maps the branding fields of a season to the core backend login options.
+     *
+     * @param array<string, mixed> $season
+     * @return array<string, string>
+     */
+    private function resolveBranding(array $season): array
     {
-        $references = $this->fileRepository->findByRelation(self::TABLE, 'image', $uid);
+        $branding = [];
+        $logo = $this->resolveImagePath((int)$season['uid'], 'logo');
+        if ($logo !== null) {
+            $branding['loginLogo'] = $logo;
+            $branding['loginLogoAlt'] = trim((string)($season['logo_alt'] ?? ''));
+        }
+        $highlightColor = (string)($season['highlight_color'] ?? '');
+        if (LoginStyles::isValidColor($highlightColor)) {
+            $branding['loginHighlightColor'] = $highlightColor;
+        }
+        $footnote = trim((string)($season['footnote'] ?? ''));
+        if ($footnote !== '') {
+            $branding['loginFootnote'] = $footnote;
+        }
+
+        return $branding;
+    }
+
+    private function resolveImagePath(int $uid, string $field): ?string
+    {
+        $references = $this->fileRepository->findByRelation(self::TABLE, $field, $uid);
         if ($references === []) {
             return null;
         }

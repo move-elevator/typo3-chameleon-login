@@ -170,6 +170,42 @@ return [
                 'default' => '',
             ],
         ],
+        'logo' => [
+            'label' => 'typo3_chameleon_login.db:season.logo',
+            'description' => 'typo3_chameleon_login.db:season.logo.description',
+            'config' => [
+                'type' => 'file',
+                'allowed' => 'common-image-types',
+                'maxitems' => 1,
+            ],
+        ],
+        'logo_alt' => [
+            'label' => 'typo3_chameleon_login.db:season.logoAlt',
+            'config' => [
+                'type' => 'input',
+                'size' => 40,
+                'eval' => 'trim',
+            ],
+        ],
+        'highlight_color' => [
+            'label' => 'typo3_chameleon_login.db:season.highlightColor',
+            'description' => 'typo3_chameleon_login.db:season.highlightColor.description',
+            'config' => [
+                'type' => 'color',
+                'default' => '',
+                'searchable' => false,
+            ],
+        ],
+        'footnote' => [
+            'label' => 'typo3_chameleon_login.db:season.footnote',
+            'description' => 'typo3_chameleon_login.db:season.footnote.description',
+            'config' => [
+                'type' => 'input',
+                'size' => 40,
+                'max' => 255,
+                'eval' => 'trim',
+            ],
+        ],
         'hidden' => [
             'label' => 'typo3_chameleon_login.db:season.hidden',
             'config' => [
@@ -184,6 +220,7 @@ return [
             'showitem' => '
                 --div--;typo3_chameleon_login.db:tab.general, title,
                 --div--;typo3_chameleon_login.db:tab.appearance, background_type, image, gradient_color_1, gradient_color_2, gradient_color_3, gradient_color_4, gradient_speed, background_color, effect,
+                --div--;typo3_chameleon_login.db:tab.branding, logo, logo_alt, highlight_color, footnote,
                 --div--;typo3_chameleon_login.db:tab.period, valid_from, valid_until, recurring, priority,
                 --div--;typo3_chameleon_login.db:tab.access, hidden
             ',
