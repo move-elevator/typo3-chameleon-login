@@ -33,11 +33,26 @@
 			<trans-unit id="season.backgroundColor.description">
 				<source>Shown behind the image when the image is smaller than the viewport.</source>
 			</trans-unit>
+			<trans-unit id="season.effect">
+				<source>Effect</source>
+			</trans-unit>
+			<trans-unit id="season.effect.description">
+				<source>Animated effect on top of the background. Not shown to users who prefer reduced motion.</source>
+			</trans-unit>
+			<trans-unit id="season.effect.none">
+				<source>None</source>
+			</trans-unit>
+			<trans-unit id="season.effect.snow">
+				<source>Snowfall</source>
+			</trans-unit>
 			<trans-unit id="season.hidden">
 				<source>Disabled</source>
 			</trans-unit>
 			<trans-unit id="tab.general">
 				<source>General</source>
+			</trans-unit>
+			<trans-unit id="tab.appearance">
+				<source>Appearance</source>
 			</trans-unit>
 			<trans-unit id="tab.period">
 				<source>Period</source>

@@ -40,6 +40,10 @@ final readonly class SeasonApplier
             if ($backgroundColor !== '') {
                 $config['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundColor'] = $backgroundColor;
             }
+            $effect = (string)($season['effect'] ?? '');
+            if ($effect !== '') {
+                $config['EXTENSIONS']['typo3_chameleon_login']['effect'] = $effect;
+            }
         }
 
         $this->writeConfig($config);
