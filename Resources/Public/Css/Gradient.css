@@ -1,0 +1,28 @@
+.typo3-login::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: var(--chameleon-login-gradient);
+}
+
+.typo3-login-inner {
+    position: relative;
+    z-index: 1;
+}
+
+/* Moving an oversized layer via transform runs on the compositor and is far cheaper than animating background-position */
+@media (prefers-reduced-motion: no-preference) {
+    .typo3-login::before {
+        right: auto;
+        bottom: auto;
+        width: 300vw;
+        height: 300vh;
+        animation: chameleon-login-gradient var(--chameleon-login-gradient-duration, 20s) ease-in-out infinite alternate;
+    }
+}
+
+@keyframes chameleon-login-gradient {
+    to {
+        transform: translate(-200vw, -200vh);
+    }
+}

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MoveElevator\Typo3ChameleonLogin\Season;
 
+use MoveElevator\Typo3ChameleonLogin\Style\LoginStyles;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\FileRepository;
@@ -32,9 +33,13 @@ final readonly class SeasonApplier
         $config = [];
 
         if ($season !== null) {
-            $image = $this->resolveImagePath((int)$season['uid']);
-            if ($image !== null) {
-                $config['EXTENSIONS']['backend']['loginBackgroundImage'] = $image;
+            if (($season['background_type'] ?? '') === 'gradient') {
+                $config['EXTENSIONS']['typo3_chameleon_login'] = $this->resolveGradient($season);
+            } else {
+                $image = $this->resolveImagePath((int)$season['uid']);
+                if ($image !== null) {
+                    $config['EXTENSIONS']['backend']['loginBackgroundImage'] = $image;
+                }
             }
             $backgroundColor = (string)($season['background_color'] ?? '');
             if ($backgroundColor !== '') {
@@ -73,6 +78,28 @@ final readonly class SeasonApplier
         }
 
         return null;
+    }
+
+    /**
+     * @param array<string, mixed> $season
+     * @return array<string, mixed>
+     */
+    private function resolveGradient(array $season): array
+    {
+        $colors = LoginStyles::filterValidColors([
+            $season['gradient_color_1'] ?? '',
+            $season['gradient_color_2'] ?? '',
+            $season['gradient_color_3'] ?? '',
+            $season['gradient_color_4'] ?? '',
+        ]);
+        if (count($colors) < 2) {
+            return [];
+        }
+
+        return [
+            'loginBackgroundGradient' => $colors,
+            'loginBackgroundGradientSpeed' => (string)($season['gradient_speed'] ?? ''),
+        ];
     }
 
     private function resolveImagePath(int $uid): ?string

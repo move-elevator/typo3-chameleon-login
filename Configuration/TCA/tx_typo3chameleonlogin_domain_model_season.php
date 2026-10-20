@@ -27,14 +27,26 @@ return [
                 'eval' => 'trim',
             ],
         ],
+        'background_type' => [
+            'label' => 'typo3_chameleon_login.db:season.backgroundType',
+            'onChange' => 'reload',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['label' => 'typo3_chameleon_login.db:season.backgroundType.image', 'value' => 'image'],
+                    ['label' => 'typo3_chameleon_login.db:season.backgroundType.gradient', 'value' => 'gradient'],
+                ],
+                'default' => 'image',
+            ],
+        ],
         'image' => [
             'label' => 'typo3_chameleon_login.db:season.image',
+            'displayCond' => 'FIELD:background_type:=:image',
             'config' => [
                 'type' => 'file',
                 'allowed' => 'common-image-types',
                 'maxitems' => 1,
-                'minitems' => 1,
-                'required' => true,
                 'overrideChildTca' => [
                     'types' => [
                         '0' => [
@@ -91,6 +103,56 @@ return [
                 'searchable' => false,
             ],
         ],
+        'gradient_color_1' => [
+            'label' => 'typo3_chameleon_login.db:season.gradientColor1',
+            'displayCond' => 'FIELD:background_type:=:gradient',
+            'config' => [
+                'type' => 'color',
+                'default' => '',
+                'searchable' => false,
+            ],
+        ],
+        'gradient_color_2' => [
+            'label' => 'typo3_chameleon_login.db:season.gradientColor2',
+            'displayCond' => 'FIELD:background_type:=:gradient',
+            'config' => [
+                'type' => 'color',
+                'default' => '',
+                'searchable' => false,
+            ],
+        ],
+        'gradient_color_3' => [
+            'label' => 'typo3_chameleon_login.db:season.gradientColor3',
+            'displayCond' => 'FIELD:background_type:=:gradient',
+            'config' => [
+                'type' => 'color',
+                'default' => '',
+                'searchable' => false,
+            ],
+        ],
+        'gradient_color_4' => [
+            'label' => 'typo3_chameleon_login.db:season.gradientColor4',
+            'displayCond' => 'FIELD:background_type:=:gradient',
+            'config' => [
+                'type' => 'color',
+                'default' => '',
+                'searchable' => false,
+            ],
+        ],
+        'gradient_speed' => [
+            'label' => 'typo3_chameleon_login.db:season.gradientSpeed',
+            'displayCond' => 'FIELD:background_type:=:gradient',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['label' => 'typo3_chameleon_login.db:season.gradientSpeed.slow', 'value' => 'slow'],
+                    ['label' => 'typo3_chameleon_login.db:season.gradientSpeed.medium', 'value' => 'medium'],
+                    ['label' => 'typo3_chameleon_login.db:season.gradientSpeed.fast', 'value' => 'fast'],
+                ],
+                'default' => 'medium',
+            ],
+        ],
         'effect' => [
             'label' => 'typo3_chameleon_login.db:season.effect',
             'description' => 'typo3_chameleon_login.db:season.effect.description',
@@ -117,7 +179,7 @@ return [
         '0' => [
             'showitem' => '
                 --div--;typo3_chameleon_login.db:tab.general, title,
-                --div--;typo3_chameleon_login.db:tab.appearance, image, background_color, effect,
+                --div--;typo3_chameleon_login.db:tab.appearance, background_type, image, gradient_color_1, gradient_color_2, gradient_color_3, gradient_color_4, gradient_speed, background_color, effect,
                 --div--;typo3_chameleon_login.db:tab.period, valid_from, valid_until, recurring, priority,
                 --div--;typo3_chameleon_login.db:tab.access, hidden
             ',
