@@ -50,6 +50,16 @@ ddev cgl fix:editorconfig
 ddev cgl fix:php
 ```
 
+## Code style
+
+PHP CS Fixer enforces most conventions, run `ddev cgl fix:php` to apply them:
+
+- Native functions, classes and constants are imported, e.g. `use function in_array;`
+- Imports from the same namespace are grouped, e.g. `use TYPO3\CMS\Core\Page\{JavaScriptModuleInstruction, PageRenderer};`
+- Comparisons use yoda style, e.g. `null === $season`
+
+One convention is not covered by the fixer: write boolean negations as an explicit comparison, e.g. `false === in_array($effect, self::EFFECTS, true)` instead of `!in_array(…)`.
+
 ## Run static code analysis
 
 ```bash
