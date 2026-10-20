@@ -11,6 +11,50 @@
 				<source>Title</source>
 				<target>Titel</target>
 			</trans-unit>
+			<trans-unit id="season.backgroundType">
+				<source>Background type</source>
+				<target>Hintergrundart</target>
+			</trans-unit>
+			<trans-unit id="season.backgroundType.image">
+				<source>Image</source>
+				<target>Bild</target>
+			</trans-unit>
+			<trans-unit id="season.backgroundType.gradient">
+				<source>Animated gradient</source>
+				<target>Animierter Farbverlauf</target>
+			</trans-unit>
+			<trans-unit id="season.gradientColor1">
+				<source>Gradient color 1</source>
+				<target>Verlaufsfarbe 1</target>
+			</trans-unit>
+			<trans-unit id="season.gradientColor2">
+				<source>Gradient color 2</source>
+				<target>Verlaufsfarbe 2</target>
+			</trans-unit>
+			<trans-unit id="season.gradientColor3">
+				<source>Gradient color 3 (optional)</source>
+				<target>Verlaufsfarbe 3 (optional)</target>
+			</trans-unit>
+			<trans-unit id="season.gradientColor4">
+				<source>Gradient color 4 (optional)</source>
+				<target>Verlaufsfarbe 4 (optional)</target>
+			</trans-unit>
+			<trans-unit id="season.gradientSpeed">
+				<source>Animation speed</source>
+				<target>Animationsgeschwindigkeit</target>
+			</trans-unit>
+			<trans-unit id="season.gradientSpeed.slow">
+				<source>Slow</source>
+				<target>Langsam</target>
+			</trans-unit>
+			<trans-unit id="season.gradientSpeed.medium">
+				<source>Medium</source>
+				<target>Mittel</target>
+			</trans-unit>
+			<trans-unit id="season.gradientSpeed.fast">
+				<source>Fast</source>
+				<target>Schnell</target>
+			</trans-unit>
 			<trans-unit id="season.image">
 				<source>Background image</source>
 				<target>Hintergrundbild</target>

@@ -9,6 +9,39 @@
 			<trans-unit id="season.title">
 				<source>Title</source>
 			</trans-unit>
+			<trans-unit id="season.backgroundType">
+				<source>Background type</source>
+			</trans-unit>
+			<trans-unit id="season.backgroundType.image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="season.backgroundType.gradient">
+				<source>Animated gradient</source>
+			</trans-unit>
+			<trans-unit id="season.gradientColor1">
+				<source>Gradient color 1</source>
+			</trans-unit>
+			<trans-unit id="season.gradientColor2">
+				<source>Gradient color 2</source>
+			</trans-unit>
+			<trans-unit id="season.gradientColor3">
+				<source>Gradient color 3 (optional)</source>
+			</trans-unit>
+			<trans-unit id="season.gradientColor4">
+				<source>Gradient color 4 (optional)</source>
+			</trans-unit>
+			<trans-unit id="season.gradientSpeed">
+				<source>Animation speed</source>
+			</trans-unit>
+			<trans-unit id="season.gradientSpeed.slow">
+				<source>Slow</source>
+			</trans-unit>
+			<trans-unit id="season.gradientSpeed.medium">
+				<source>Medium</source>
+			</trans-unit>
+			<trans-unit id="season.gradientSpeed.fast">
+				<source>Fast</source>
+			</trans-unit>
 			<trans-unit id="season.image">
 				<source>Background image</source>
 			</trans-unit>
