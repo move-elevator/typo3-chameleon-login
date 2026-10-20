@@ -1,4 +1,4 @@
-import { random } from '../random.js';
+import { random } from '@move-elevator/typo3-chameleon-login/random.js';
 
 export const snow = {
   spawn: (width, height, initial) => {

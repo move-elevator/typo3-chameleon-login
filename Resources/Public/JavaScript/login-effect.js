@@ -1,4 +1,4 @@
-import { snow } from './presets/snow.js';
+import { snow } from '@move-elevator/typo3-chameleon-login/presets/snow.js';
 
 const presets = { snow };
 
