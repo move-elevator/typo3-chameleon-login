@@ -45,6 +45,9 @@
 			<trans-unit id="season.image">
 				<source>Background image</source>
 			</trans-unit>
+			<trans-unit id="season.image.description">
+				<source>With several images, a random one is shown on each visit of the login screen.</source>
+			</trans-unit>
 			<trans-unit id="season.validFrom">
 				<source>Valid from</source>
 			</trans-unit>

@@ -47,9 +47,12 @@ final readonly class SeasonApplier
         if (($season['background_type'] ?? '') === 'gradient') {
             $extension = $this->resolveGradient($season);
         } else {
-            $image = $this->resolveImagePath((int)$season['uid'], 'image');
-            if ($image !== null) {
-                $backend['loginBackgroundImage'] = $image;
+            $images = $this->resolveImagePaths((int)$season['uid'], 'image');
+            if ($images !== []) {
+                $backend['loginBackgroundImage'] = $images[0];
+            }
+            if (count($images) > 1) {
+                $extension['loginBackgroundImages'] = $images;
             }
         }
         $backgroundColor = (string)($season['background_color'] ?? '');
@@ -121,7 +124,7 @@ final readonly class SeasonApplier
     private function resolveBranding(array $season): array
     {
         $branding = [];
-        $logo = $this->resolveImagePath((int)$season['uid'], 'logo');
+        $logo = $this->resolveImagePaths((int)$season['uid'], 'logo')[0] ?? null;
         if ($logo !== null) {
             $branding['loginLogo'] = $logo;
             $branding['loginLogoAlt'] = trim((string)($season['logo_alt'] ?? ''));
@@ -138,25 +141,22 @@ final readonly class SeasonApplier
         return $branding;
     }
 
-    private function resolveImagePath(int $uid, string $field): ?string
+    /**
+     * @return list<string>
+     */
+    private function resolveImagePaths(int $uid, string $field): array
     {
-        $references = $this->fileRepository->findByRelation(self::TABLE, $field, $uid);
-        if ($references === []) {
-            return null;
+        $urls = [];
+        foreach ($this->fileRepository->findByRelation(self::TABLE, $field, $uid) as $reference) {
+            $url = (string)$reference->getOriginalFile()->getPublicUrl();
+            // Defense in depth: skip paths containing characters that could
+            // break out of a CSS `url('…')` declaration when consumed downstream.
+            if ($url !== '' && preg_match('/[\'"\\\\(){};\r\n\t]/', $url) !== 1) {
+                $urls[] = $url;
+            }
         }
 
-        $url = $references[0]->getOriginalFile()->getPublicUrl();
-        if ($url === null || $url === '') {
-            return null;
-        }
-
-        // Defense in depth: reject paths containing characters that could
-        // break out of a CSS `url('…')` declaration when consumed downstream.
-        if (preg_match('/[\'"\\\\(){};\r\n\t]/', $url) === 1) {
-            return null;
-        }
-
-        return $url;
+        return $urls;
     }
 
     /**

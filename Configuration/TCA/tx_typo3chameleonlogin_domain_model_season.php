@@ -40,11 +40,12 @@ return [
         ],
         'image' => [
             'label' => 'typo3_chameleon_login.db:season.image',
+            'description' => 'typo3_chameleon_login.db:season.image.description',
             'displayCond' => 'FIELD:background_type:=:image',
             'config' => [
                 'type' => 'file',
                 'allowed' => 'common-image-types',
-                'maxitems' => 1,
+                'maxitems' => 10,
             ],
         ],
         'valid_from' => [
