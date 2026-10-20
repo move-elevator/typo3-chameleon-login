@@ -21,7 +21,7 @@ final class LoginStyles
     {
         return array_values(array_filter(
             $colors,
-            static fn(mixed $color): bool => is_string($color) && self::isValidColor($color)
+            static fn (mixed $color): bool => is_string($color) && self::isValidColor($color)
         ));
     }
 
