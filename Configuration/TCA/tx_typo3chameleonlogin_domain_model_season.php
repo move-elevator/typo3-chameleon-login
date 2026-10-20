@@ -162,6 +162,10 @@ return [
                 'items' => [
                     ['label' => 'typo3_chameleon_login.db:season.effect.none', 'value' => ''],
                     ['label' => 'typo3_chameleon_login.db:season.effect.snow', 'value' => 'snow'],
+                    ['label' => 'typo3_chameleon_login.db:season.effect.leaves', 'value' => 'leaves'],
+                    ['label' => 'typo3_chameleon_login.db:season.effect.blossoms', 'value' => 'blossoms'],
+                    ['label' => 'typo3_chameleon_login.db:season.effect.confetti', 'value' => 'confetti'],
+                    ['label' => 'typo3_chameleon_login.db:season.effect.hearts', 'value' => 'hearts'],
                 ],
                 'default' => '',
             ],

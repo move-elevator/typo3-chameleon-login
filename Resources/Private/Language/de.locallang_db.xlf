@@ -103,6 +103,22 @@
 				<source>Snowfall</source>
 				<target>Schneefall</target>
 			</trans-unit>
+			<trans-unit id="season.effect.leaves">
+				<source>Falling leaves</source>
+				<target>Fallendes Laub</target>
+			</trans-unit>
+			<trans-unit id="season.effect.blossoms">
+				<source>Cherry blossoms</source>
+				<target>Kirschblüten</target>
+			</trans-unit>
+			<trans-unit id="season.effect.confetti">
+				<source>Confetti</source>
+				<target>Konfetti</target>
+			</trans-unit>
+			<trans-unit id="season.effect.hearts">
+				<source>Rising hearts</source>
+				<target>Aufsteigende Herzen</target>
+			</trans-unit>
 			<trans-unit id="season.hidden">
 				<source>Disabled</source>
 				<target>Deaktiviert</target>
