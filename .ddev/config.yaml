@@ -1,0 +1,20 @@
+name: typo3-chameleon-login
+type: typo3
+docroot: public
+php_version: "8.4"
+webserver_type: apache-fpm
+xdebug_enabled: false
+additional_hostnames: []
+additional_fqdns: []
+database:
+  type: mariadb
+  version: "11.4"
+hooks:
+  post-start:
+    - exec: if [ ! -d /var/www/html/vendor ]; then composer i; fi
+    - exec: if [ -d /var/www/html/vendor/captainhook ]; then vendor/bin/captainhook install --only-enabled -f; fi
+webimage_extra_packages: [ libxml2-utils ]
+use_dns_when_possible: true
+composer_version: "2"
+web_environment: []
+corepack_enable: false

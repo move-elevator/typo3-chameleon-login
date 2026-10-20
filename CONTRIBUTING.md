@@ -1,0 +1,85 @@
+# Contributing
+
+Thank you for considering contributing to this project! Every contribution is welcome and helps improve the quality of the project. To ensure a smooth process and maintain high code quality, please follow the steps below.
+
+## Requirements
+
+- [DDEV](https://ddev.readthedocs.io/en/stable/)
+
+## Preparation
+
+```bash
+# Clone repository
+git clone https://github.com/move-elevator/typo3-chameleon-login.git
+cd typo3-chameleon-login
+
+# Start the project with DDEV
+ddev start
+
+# Install dependencies
+ddev composer install
+
+# Set up TYPO3
+ddev init-typo3
+```
+
+You can access the TYPO3 backend at <https://typo3-chameleon-login.ddev.site/typo3/>.
+
+To log in, use the username `admin` and the password `Password1!`.
+
+## Run linters
+
+```bash
+# All linters
+ddev cgl lint
+
+# Specific linters
+ddev cgl lint:composer
+ddev cgl lint:editorconfig
+ddev cgl lint:language
+ddev cgl lint:php
+ddev cgl lint:typoscript
+ddev cgl lint:yaml
+
+# Fix all CGL issues
+ddev cgl fix
+
+# Fix specific CGL issues
+ddev cgl fix:composer
+ddev cgl fix:editorconfig
+ddev cgl fix:php
+```
+
+## Run static code analysis
+
+```bash
+# All static code analyzers
+ddev cgl sca
+
+# Specific static code analyzers
+ddev cgl sca:php
+
+# Composer dependency analysis
+ddev cgl analyze
+
+# Rector migrations
+ddev cgl migration
+```
+
+## Run tests
+
+```bash
+ddev composer test
+```
+
+## Commit messages
+
+Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/). Allowed types are `chore`, `docs`, `feat`, `fix`, `refactor` and `test`, e.g. `feat: add season preview`. A `commit-msg` hook installed by `ddev start` validates every message.
+
+## Submit a pull request
+
+After completing your work, **open a pull request** and provide a description of your changes. Ideally, your PR should reference an issue that explains the problem you are addressing.
+
+All mentioned code quality tools will run automatically on every pull request. For more details, see the relevant [workflows][1].
+
+[1]: .github/workflows

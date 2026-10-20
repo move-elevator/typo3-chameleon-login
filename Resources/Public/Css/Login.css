@@ -1,0 +1,5 @@
+.typo3-login {
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-color: var(--chameleon-login-bg-color, transparent);
+}

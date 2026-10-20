@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2026-05-22T00:00:00Z" product-name="typo3_chameleon_login">
+		<header/>
+		<body>
+			<trans-unit id="season">
+				<source>Login Season</source>
+			</trans-unit>
+			<trans-unit id="season.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="season.image">
+				<source>Background image</source>
+			</trans-unit>
+			<trans-unit id="season.validFrom">
+				<source>Valid from</source>
+			</trans-unit>
+			<trans-unit id="season.validUntil">
+				<source>Valid until</source>
+			</trans-unit>
+			<trans-unit id="season.recurring">
+				<source>Recurring every year</source>
+			</trans-unit>
+			<trans-unit id="season.recurring.description">
+				<source>Only month and day are evaluated, the year is ignored.</source>
+			</trans-unit>
+			<trans-unit id="season.priority">
+				<source>Priority (higher overrides lower)</source>
+			</trans-unit>
+			<trans-unit id="season.backgroundColor">
+				<source>Background color</source>
+			</trans-unit>
+			<trans-unit id="season.backgroundColor.description">
+				<source>Shown behind the image when the image is smaller than the viewport.</source>
+			</trans-unit>
+			<trans-unit id="season.hidden">
+				<source>Disabled</source>
+			</trans-unit>
+			<trans-unit id="tab.general">
+				<source>General</source>
+			</trans-unit>
+			<trans-unit id="tab.period">
+				<source>Period</source>
+			</trans-unit>
+			<trans-unit id="tab.access">
+				<source>Access</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

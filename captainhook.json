@@ -1,0 +1,156 @@
+{
+	"config": {
+		"bootstrap": "./vendor/autoload.php",
+		"git-directory": "/var/www/html/.git/",
+		"verbosity": "verbose",
+		"run": {
+			"mode": "docker",
+			"exec": "ddev exec",
+			"path": "/var/www/html/vendor/bin/captainhook"
+		}
+	},
+	"commit-msg": {
+		"enabled": true,
+		"actions": [
+			{
+				"action": "\\Ramsey\\CaptainHook\\ValidateConventionalCommit",
+				"options": {
+					"config": {
+						"typeCase": "lower",
+						"types": [
+							"chore",
+							"docs",
+							"feat",
+							"fix",
+							"refactor",
+							"test"
+						]
+					}
+				}
+			}
+		]
+	},
+	"pre-push": {
+		"enabled": false,
+		"actions": []
+	},
+	"pre-commit": {
+		"enabled": true,
+		"actions": [
+			{
+				"action": "composer lint:editorconfig -d Tests/CGL",
+				"conditions": [
+					{
+						"exec": "\\CaptainHook\\App\\Hook\\Condition\\FileStaged\\InDirectory",
+						"args": [
+							"/"
+						]
+					}
+				]
+			},
+			{
+				"action": "composer lint:yaml -d Tests/CGL",
+				"conditions": [
+					{
+						"exec": "\\CaptainHook\\App\\Hook\\Condition\\FileStaged\\OfType",
+						"args": [
+							[
+								"yaml",
+								"yml"
+							]
+						]
+					}
+				]
+			},
+			{
+				"action": "composer lint:php -d Tests/CGL",
+				"conditions": [
+					{
+						"exec": "\\CaptainHook\\App\\Hook\\Condition\\FileStaged\\OfType",
+						"args": [
+							[
+								"php"
+							]
+						]
+					}
+				]
+			},
+			{
+				"action": "composer lint:composer -d Tests/CGL",
+				"conditions": [
+					{
+						"exec": "\\CaptainHook\\App\\Hook\\Condition\\FileStaged\\Any",
+						"args": [
+							[
+								"composer.json"
+							]
+						]
+					}
+				]
+			},
+			{
+				"action": "Tests/CGL/vendor/bin/rector process --dry-run -c Tests/CGL/rector.php {$STAGED_FILES|in-dir:Classes|of-type:php|separated-by: }",
+				"conditions": [
+					{
+						"exec": "\\CaptainHook\\App\\Hook\\Condition\\FileStaged\\OfType",
+						"args": [
+							[
+								"php"
+							]
+						]
+					}
+				]
+			},
+			{
+				"action": "Tests/CGL/vendor/bin/php-cs-fixer fix --config Tests/CGL/.php-cs-fixer.php -v --dry-run --using-cache=no --diff {$STAGED_FILES|in-dir:Classes|of-type:php|separated-by: }",
+				"conditions": [
+					{
+						"exec": "\\CaptainHook\\App\\Hook\\Condition\\FileStaged\\OfType",
+						"args": [
+							[
+								"php"
+							]
+						]
+					}
+				]
+			},
+			{
+				"action": "Tests/CGL/vendor/bin/phpstan analyse -c Tests/CGL/phpstan.neon --memory-limit=-1",
+				"conditions": [
+					{
+						"exec": "\\CaptainHook\\App\\Hook\\Condition\\FileStaged\\OfType",
+						"args": [
+							[
+								"php"
+							]
+						]
+					}
+				]
+			}
+		]
+	},
+	"prepare-commit-msg": {
+		"enabled": false,
+		"actions": []
+	},
+	"post-commit": {
+		"enabled": false,
+		"actions": []
+	},
+	"post-merge": {
+		"enabled": false,
+		"actions": []
+	},
+	"post-checkout": {
+		"enabled": false,
+		"actions": []
+	},
+	"post-rewrite": {
+		"enabled": false,
+		"actions": []
+	},
+	"post-change": {
+		"enabled": false,
+		"actions": []
+	}
+}

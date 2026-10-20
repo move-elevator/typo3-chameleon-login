@@ -1,0 +1,1 @@
+mod.web_list.tableDisplayFields.tx_typo3chameleonlogin_domain_model_season = title, valid_from, valid_until, recurring, priority
