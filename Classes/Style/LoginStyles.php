@@ -4,13 +4,21 @@ declare(strict_types=1);
 
 namespace MoveElevator\Typo3ChameleonLogin\Style;
 
+use function array_filter;
+use function array_values;
+use function count;
+use function implode;
+use function is_string;
+use function preg_match;
+use function sprintf;
+
 final class LoginStyles
 {
     public const array GRADIENT_DURATIONS = ['slow' => 40, 'medium' => 20, 'fast' => 10];
 
     public static function isValidColor(string $color): bool
     {
-        return preg_match('/^#[0-9a-fA-F]{3,8}$/', $color) === 1;
+        return 1 === preg_match('/^#[0-9a-fA-F]{3,8}$/', $color);
     }
 
     /**

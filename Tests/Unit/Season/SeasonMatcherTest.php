@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace MoveElevator\Typo3ChameleonLogin\Tests\Unit\Season;
 
+use DateTimeImmutable;
+use DateTimeZone;
 use MoveElevator\Typo3ChameleonLogin\Season\SeasonMatcher;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\{CoversClass, DataProvider, Test};
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(SeasonMatcher::class)]
@@ -98,9 +98,9 @@ final class SeasonMatcherTest extends TestCase
         self::assertSame($expected, new SeasonMatcher()->isActive($season, $this->day($today)));
     }
 
-    private function day(string $date): \DateTimeImmutable
+    private function day(string $date): DateTimeImmutable
     {
-        return new \DateTimeImmutable($date, new \DateTimeZone(self::TIMEZONE));
+        return new DateTimeImmutable($date, new DateTimeZone(self::TIMEZONE));
     }
 
     private function midnight(string $date): int

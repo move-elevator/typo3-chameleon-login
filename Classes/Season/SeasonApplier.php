@@ -4,11 +4,23 @@ declare(strict_types=1);
 
 namespace MoveElevator\Typo3ChameleonLogin\Season;
 
+use DateTimeImmutable;
 use MoveElevator\Typo3ChameleonLogin\Style\LoginStyles;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+
+use function array_filter;
+use function count;
+use function function_exists;
+use function implode;
+use function is_array;
+use function opcache_invalidate;
+use function preg_match;
+use function str_repeat;
+use function trim;
+use function var_export;
 
 final readonly class SeasonApplier
 {
@@ -30,7 +42,7 @@ final readonly class SeasonApplier
     public function apply(): ?array
     {
         $season = $this->findActiveSeason();
-        $this->writeConfig($season === null ? [] : $this->buildConfig($season));
+        $this->writeConfig(null === $season ? [] : $this->buildConfig($season));
 
         return $season;
     }
@@ -48,7 +60,7 @@ final readonly class SeasonApplier
             $extension = $this->resolveGradient($season);
         } else {
             $images = $this->resolveImagePaths((int)$season['uid'], 'image');
-            if ($images !== []) {
+            if ([] !== $images) {
                 $backend['loginBackgroundImage'] = $images[0];
             }
             if (count($images) > 1) {
@@ -56,17 +68,17 @@ final readonly class SeasonApplier
             }
         }
         $backgroundColor = (string)($season['background_color'] ?? '');
-        if ($backgroundColor !== '') {
+        if ('' !== $backgroundColor) {
             $extension['loginBackgroundColor'] = $backgroundColor;
         }
         $effect = (string)($season['effect'] ?? '');
-        if ($effect !== '') {
+        if ('' !== $effect) {
             $extension['effect'] = $effect;
         }
 
         $extensions = array_filter(['backend' => $backend, 'typo3_chameleon_login' => $extension]);
 
-        return $extensions === [] ? [] : ['EXTENSIONS' => $extensions];
+        return [] === $extensions ? [] : ['EXTENSIONS' => $extensions];
     }
 
     /**
@@ -83,7 +95,7 @@ final readonly class SeasonApplier
             ->executeQuery()
             ->fetchAllAssociative();
 
-        $today = new \DateTimeImmutable('today');
+        $today = new DateTimeImmutable('today');
         foreach ($rows as $row) {
             if ($this->seasonMatcher->isActive($row, $today)) {
                 return $row;
@@ -125,7 +137,7 @@ final readonly class SeasonApplier
     {
         $branding = [];
         $logo = $this->resolveImagePaths((int)$season['uid'], 'logo')[0] ?? null;
-        if ($logo !== null) {
+        if (null !== $logo) {
             $branding['loginLogo'] = $logo;
             $branding['loginLogoAlt'] = trim((string)($season['logo_alt'] ?? ''));
         }
@@ -134,7 +146,7 @@ final readonly class SeasonApplier
             $branding['loginHighlightColor'] = $highlightColor;
         }
         $footnote = trim((string)($season['footnote'] ?? ''));
-        if ($footnote !== '') {
+        if ('' !== $footnote) {
             $branding['loginFootnote'] = $footnote;
         }
 
@@ -151,7 +163,7 @@ final readonly class SeasonApplier
             $url = (string)$reference->getOriginalFile()->getPublicUrl();
             // Defense in depth: skip paths containing characters that could
             // break out of a CSS `url('…')` declaration when consumed downstream.
-            if ($url !== '' && preg_match('/[\'"\\\\(){};\r\n\t]/', $url) !== 1) {
+            if ('' !== $url && 1 !== preg_match('/[\'"\\\\(){};\r\n\t]/', $url)) {
                 $urls[] = $url;
             }
         }
@@ -183,7 +195,7 @@ final readonly class SeasonApplier
      */
     private function exportArray(array $data, int $depth): string
     {
-        if ($data === []) {
+        if ([] === $data) {
             return '[]';
         }
 

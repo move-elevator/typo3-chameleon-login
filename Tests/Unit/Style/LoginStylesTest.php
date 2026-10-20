@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace MoveElevator\Typo3ChameleonLogin\Tests\Unit\Style;
 
 use MoveElevator\Typo3ChameleonLogin\Style\LoginStyles;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\{CoversClass, DataProvider, Test};
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(LoginStyles::class)]

@@ -11,6 +11,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 
+use function sprintf;
+
 #[AsCommand(
     name: 'chameleon-login:apply',
     description: 'Writes the currently active login season into a config file.'
@@ -30,7 +32,7 @@ final class ApplySeasonCommand extends Command
 
         $lang = $this->languageServiceFactory->create('default');
         $output->writeln(
-            $season !== null
+            null !== $season
             ? sprintf('<info>' . $lang->sL('typo3_chameleon_login.messages:command.activeSeason') . '</info>', $season['title'])
             : '<comment>' . $lang->sL('typo3_chameleon_login.messages:command.noActiveSeason') . '</comment>'
         );

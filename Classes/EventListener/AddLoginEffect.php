@@ -6,8 +6,9 @@ namespace MoveElevator\Typo3ChameleonLogin\EventListener;
 
 use TYPO3\CMS\Backend\LoginProvider\Event\ModifyPageLayoutOnLoginProviderSelectionEvent;
 use TYPO3\CMS\Core\Attribute\AsEventListener;
-use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
-use TYPO3\CMS\Core\Page\PageRenderer;
+use TYPO3\CMS\Core\Page\{JavaScriptModuleInstruction, PageRenderer};
+
+use function in_array;
 
 final readonly class AddLoginEffect
 {
@@ -22,7 +23,7 @@ final readonly class AddLoginEffect
     public function __invoke(ModifyPageLayoutOnLoginProviderSelectionEvent $event): void
     {
         $effect = (string)($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['effect'] ?? '');
-        if (!in_array($effect, self::EFFECTS, true)) {
+        if (false === in_array($effect, self::EFFECTS, true)) {
             return;
         }
 
