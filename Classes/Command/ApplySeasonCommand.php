@@ -15,7 +15,7 @@ use function sprintf;
 
 #[AsCommand(
     name: 'chameleon-login:apply',
-    description: 'Writes the currently active login season into a config file.'
+    description: 'Writes the currently active login season into a config file.',
 )]
 final class ApplySeasonCommand extends Command
 {
@@ -33,8 +33,8 @@ final class ApplySeasonCommand extends Command
         $lang = $this->languageServiceFactory->create('default');
         $output->writeln(
             null !== $season
-            ? sprintf('<info>' . $lang->sL('typo3_chameleon_login.messages:command.activeSeason') . '</info>', $season['title'])
-            : '<comment>' . $lang->sL('typo3_chameleon_login.messages:command.noActiveSeason') . '</comment>'
+            ? sprintf('<info>'.$lang->sL('typo3_chameleon_login.messages:command.activeSeason').'</info>', $season['title'])
+            : '<comment>'.$lang->sL('typo3_chameleon_login.messages:command.noActiveSeason').'</comment>',
         );
 
         return Command::SUCCESS;

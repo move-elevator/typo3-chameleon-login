@@ -20,25 +20,25 @@ final class AddLoginStyles
         $assetCollector = $event->getAssetCollector();
         $assetCollector->addStyleSheet(
             'typo3-chameleon-login-styles',
-            'EXT:typo3_chameleon_login/Resources/Public/Css/Login.css'
+            'EXT:typo3_chameleon_login/Resources/Public/Css/Login.css',
         );
 
-        $color = trim((string)($configuration['loginBackgroundColor'] ?? ''));
+        $color = trim((string) ($configuration['loginBackgroundColor'] ?? ''));
         if (LoginStyles::isValidColor($color)) {
             $assetCollector->addInlineStyleSheet(
                 'typo3-chameleon-login-bg-color',
-                sprintf(':root { --chameleon-login-bg-color: %s; }', $color)
+                sprintf(':root { --chameleon-login-bg-color: %s; }', $color),
             );
         }
 
         $gradientVariables = LoginStyles::gradientVariables(
-            (array)($configuration['loginBackgroundGradient'] ?? []),
-            (string)($configuration['loginBackgroundGradientSpeed'] ?? '')
+            (array) ($configuration['loginBackgroundGradient'] ?? []),
+            (string) ($configuration['loginBackgroundGradientSpeed'] ?? ''),
         );
         if ('' !== $gradientVariables) {
             $assetCollector->addStyleSheet(
                 'typo3-chameleon-login-gradient',
-                'EXT:typo3_chameleon_login/Resources/Public/Css/Gradient.css'
+                'EXT:typo3_chameleon_login/Resources/Public/Css/Gradient.css',
             );
             $assetCollector->addInlineStyleSheet('typo3-chameleon-login-gradient-variables', $gradientVariables);
         }

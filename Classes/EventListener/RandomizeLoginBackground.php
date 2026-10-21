@@ -22,8 +22,7 @@ final readonly class RandomizeLoginBackground
         private PageRenderer $pageRenderer,
         private SystemResourceFactory $resourceFactory,
         private SystemResourcePublisherInterface $resourcePublisher,
-    ) {
-    }
+    ) {}
 
     /**
      * The core has already added its background image styles when this event is dispatched,
@@ -32,14 +31,14 @@ final readonly class RandomizeLoginBackground
     #[AsEventListener('typo3-chameleon-login/randomize-background')]
     public function __invoke(ModifyPageLayoutOnLoginProviderSelectionEvent $event): void
     {
-        $images = (array)($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundImages'] ?? []);
+        $images = (array) ($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundImages'] ?? []);
         if (count($images) < 2) {
             return;
         }
 
         try {
-            $uri = (string)$this->resourcePublisher->generateUri(
-                $this->resourceFactory->createPublicResource((string)$images[array_rand($images)]),
+            $uri = (string) $this->resourcePublisher->generateUri(
+                $this->resourceFactory->createPublicResource((string) $images[array_rand($images)]),
                 $event->getRequest(),
             );
         } catch (SystemResourceException) {
@@ -51,7 +50,7 @@ final readonly class RandomizeLoginBackground
             sprintf('.typo3-login { background-image: url("%s"); }', GeneralUtility::sanitizeCssVariableValue($uri)),
             null,
             false,
-            true
+            true,
         );
     }
 }

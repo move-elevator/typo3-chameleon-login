@@ -43,7 +43,7 @@ final class LoginStylesTest extends TestCase
     {
         self::assertSame(
             ':root { --chameleon-login-gradient: linear-gradient(135deg, #ff0000, #00ff00); --chameleon-login-gradient-duration: 10s; }',
-            LoginStyles::gradientVariables(['#ff0000', 'url(x)', '#00ff00'], 'fast')
+            LoginStyles::gradientVariables(['#ff0000', 'url(x)', '#00ff00'], 'fast'),
         );
     }
 
@@ -52,7 +52,7 @@ final class LoginStylesTest extends TestCase
     {
         self::assertStringContainsString(
             '--chameleon-login-gradient-duration: 20s;',
-            LoginStyles::gradientVariables(['#000', '#fff'], 'unknown')
+            LoginStyles::gradientVariables(['#000', '#fff'], 'unknown'),
         );
     }
 }

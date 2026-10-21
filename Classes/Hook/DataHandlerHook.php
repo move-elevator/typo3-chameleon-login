@@ -15,8 +15,7 @@ final readonly class DataHandlerHook
 {
     public function __construct(
         private SeasonApplier $seasonApplier,
-    ) {
-    }
+    ) {}
 
     public function processDatamap_afterAllOperations(DataHandler $dataHandler): void
     {
