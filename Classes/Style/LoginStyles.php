@@ -23,13 +23,14 @@ final class LoginStyles
 
     /**
      * @param array<mixed> $colors
+     *
      * @return list<string>
      */
     public static function filterValidColors(array $colors): array
     {
         return array_values(array_filter(
             $colors,
-            static fn (mixed $color): bool => is_string($color) && self::isValidColor($color)
+            static fn (mixed $color): bool => is_string($color) && self::isValidColor($color),
         ));
     }
 
@@ -49,7 +50,7 @@ final class LoginStyles
         return sprintf(
             ':root { --chameleon-login-gradient: linear-gradient(135deg, %s); --chameleon-login-gradient-duration: %ds; }',
             implode(', ', $validColors),
-            self::GRADIENT_DURATIONS[$speed] ?? self::GRADIENT_DURATIONS['medium']
+            self::GRADIENT_DURATIONS[$speed] ?? self::GRADIENT_DURATIONS['medium'],
         );
     }
 }

@@ -13,7 +13,7 @@ use Ssch\TYPO3Rector\CodeQuality\General\{ConvertImplicitVariablesToExplicitGlob
 use Ssch\TYPO3Rector\Configuration\Typo3Option;
 use Ssch\TYPO3Rector\Set\{Typo3LevelSetList, Typo3SetList};
 
-$rootPath = dirname(__DIR__, 2);
+$rootPath = \dirname(__DIR__, 2);
 
 return RectorConfig::configure()
     ->withPaths([
