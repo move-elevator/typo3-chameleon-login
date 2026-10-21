@@ -29,6 +29,7 @@
 		"phpunit/phpunit": "^13.0",
 		"ramsey/conventional-commits": "^1.7",
 		"typo3/cms-base-distribution": "^14.3",
+		"typo3/cms-lowlevel": "^14.3",
 		"typo3/testing-framework": "^9.0"
 	},
 	"autoload": {
