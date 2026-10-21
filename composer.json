@@ -25,6 +25,7 @@
 	},
 	"require-dev": {
 		"captainhook/captainhook": "^5.29",
+		"eliashaeussler/version-bumper": "^4.1",
 		"helhum/typo3-console": "^8.3",
 		"phpunit/phpunit": "^13.0",
 		"ramsey/conventional-commits": "^1.7",
@@ -44,6 +45,7 @@
 	},
 	"config": {
 		"allow-plugins": {
+			"eliashaeussler/version-bumper": true,
 			"typo3/class-alias-loader": true,
 			"typo3/cms-composer-installers": true
 		}
