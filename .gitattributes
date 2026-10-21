@@ -12,5 +12,6 @@
 /composer-dependency-analyser.php export-ignore
 /composer-require-checker.json export-ignore
 /composer-unused.php export-ignore
+/composer.lock export-ignore
 /CONTRIBUTING.md export-ignore
 /SECURITY.md export-ignore
