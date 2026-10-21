@@ -17,10 +17,6 @@ $configuration
     ->addPathsToExclude([
         $rootPath.'/Tests/CGL',
     ])
-    // Optional, guarded by function_exists()
-    ->ignoreErrorsOnExtension('ext-zend-opcache', [ComposerDependencyAnalyser\Config\ErrorType::SHADOW_DEPENDENCY])
-    // Provides the login form that consumes the generated loginBackgroundImage setting
-    ->ignoreErrorsOnPackage('typo3/cms-backend', [ComposerDependencyAnalyser\Config\ErrorType::UNUSED_DEPENDENCY])
 ;
 
 return $configuration;

@@ -6,6 +6,3 @@ services:
 
   MoveElevator\Typo3ChameleonLogin\:
     resource: '../Classes/*'
-
-  MoveElevator\Typo3ChameleonLogin\Hook\DataHandlerHook:
-    public: true

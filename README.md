@@ -11,7 +11,7 @@
 
 </div>
 
-This extension changes the background image of the TYPO3 backend login with the seasons. Editors maintain season records such as "Christmas", "Summer" or "Sale week" with a period, an image and an optional background color. A scheduled command writes the currently active season into a config file, which the extension merges into `TYPO3_CONF_VARS` on bootstrap.
+This extension changes the background image of the TYPO3 backend login with the seasons. Editors maintain season records such as "Christmas", "Summer" or "Sale week" with a period, an image and an optional background color. Whenever the login screen is shown, the extension determines the currently active season and merges its settings into `TYPO3_CONF_VARS`.
 
 ## ✨ Features
 
@@ -22,9 +22,9 @@ This extension changes the background image of the TYPO3 backend login with the 
 - Optional animated effects per season: snowfall, falling leaves, cherry blossoms, confetti or rising hearts
 - Yearly recurring seasons, including periods across New Year (e.g. 20.12. – 06.01.)
 - Higher priority wins when several seasons overlap
+- Seasons switch automatically when their period starts, no scheduler task needed
 - Changes to season records take effect on the login screen immediately after saving
-- Schedulable console command `chameleon-login:apply` to switch seasons automatically
-- No changes to `additional.php` needed, the extension loads its configuration itself
+- No changes to `additional.php` needed
 
 ## 🔥 Installation
 
@@ -52,15 +52,12 @@ vendor/bin/typo3 cache:flush
 2. Add records of type "Login season" with the list module.
 3. Required fields: title, valid from, valid until and either an image or at least two gradient colors. Background images must be AVIF or WebP, logos SVG, AVIF or WebP. The extension delivers the original file, so only compressed modern formats are accepted.
 4. Optional fields: background color, effect, logo, highlight color, footnote, yearly recurring, priority, disabled.
-5. Schedule the command `chameleon-login:apply` in the scheduler module, e.g. daily at night.
-
-Saving, hiding, deleting or moving a season record applies the active season right away. The scheduled command is still needed so the login screen switches to the next season when its period starts.
 
 The list view sorts records by priority and shows title, period, recurring and priority by default.
 
 ## ⚙️ Configuration
 
-The extension writes `config/system/typo3_chameleon_login.generated.php` whenever season records change and whenever the command runs. It sets:
+On the login, password reset and MFA screens, the extension merges the active season into `TYPO3_CONF_VARS`. It sets:
 
 | Setting | Description |
 |---------|-------------|
@@ -74,21 +71,13 @@ The extension writes `config/system/typo3_chameleon_login.generated.php` wheneve
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundGradientSpeed']` | Gradient animation speed: `slow`, `medium` or `fast` |
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['effect']` | Effect of the active season, e.g. `snow` |
 
-If no season is active, the file contains an empty array and the TYPO3 defaults apply. Do not edit the file manually, the next change or run overwrites it.
+If no season is active, nothing is changed and the TYPO3 defaults apply.
 
 ## 📚 Documentation
 
-### Run manually
-
-```bash
-vendor/bin/typo3 chameleon-login:apply
-```
-
-The new values take effect on the backend login with the next request.
-
 ### Season selection
 
-The command checks all enabled seasons, ordered by priority (highest first), then by uid. The first season that matches today wins.
+The extension checks all enabled seasons, ordered by priority (highest first), then by uid. The first season that matches today wins.
 
 - **One-time seasons** match between the "valid from" and "valid until" dates.
 - **Recurring seasons** only compare day and month, so they match every year. Periods across New Year are supported.
