@@ -86,6 +86,21 @@ ddev composer test
 
 Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/). Allowed types are `chore`, `docs`, `feat`, `fix`, `refactor` and `test`, e.g. `feat: add season preview`. A `commit-msg` hook installed by `ddev start` validates every message.
 
+## Create a release
+
+Versions are managed as Git tags by [version-bumper](https://github.com/eliashaeussler/version-bumper). It derives the next version from the Conventional Commits since the last tag:
+
+```bash
+# Preview the next version
+ddev composer bump-version --dry-run --release
+
+# Create the tag
+ddev composer bump-version --release
+git push origin --tags
+```
+
+Pass a range (`major`, `minor`, `patch`) or an explicit version to override the detected one, e.g. `ddev composer bump-version 0.1.0 --release` for the first release.
+
 ## Submit a pull request
 
 After completing your work, **open a pull request** and provide a description of your changes. Ideally, your PR should reference an issue that explains the problem you are addressing.

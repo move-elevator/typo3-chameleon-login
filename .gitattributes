@@ -15,3 +15,4 @@
 /composer.lock export-ignore
 /CONTRIBUTING.md export-ignore
 /SECURITY.md export-ignore
+/version-bumper.yaml export-ignore
