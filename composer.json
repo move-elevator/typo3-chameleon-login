@@ -17,7 +17,9 @@
 	},
 	"require": {
 		"php": "^8.4",
-		"symfony/console": "^7.4 || ^8.0",
+		"psr/http-message": "^1.1 || ^2.0",
+		"psr/http-server-handler": "^1.0",
+		"psr/http-server-middleware": "^1.0",
 		"typo3/cms-backend": "^14.3",
 		"typo3/cms-core": "^14.3"
 	},
@@ -27,11 +29,7 @@
 		"phpunit/phpunit": "^13.0",
 		"ramsey/conventional-commits": "^1.7",
 		"typo3/cms-base-distribution": "^14.3",
-		"typo3/cms-scheduler": "^14.3",
 		"typo3/testing-framework": "^9.0"
-	},
-	"suggest": {
-		"typo3/cms-scheduler": "Run the chameleon-login:apply command as a scheduled task."
 	},
 	"autoload": {
 		"psr-4": {

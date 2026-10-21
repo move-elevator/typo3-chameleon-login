@@ -5,6 +5,10 @@ includes:
 parameters:
 	level: 8
 
+	typo3:
+		requestGetAttributeMapping:
+			route: TYPO3\CMS\Backend\Routing\Route|null
+
 	scanDirectories:
 		- ../../vendor
 	paths:
