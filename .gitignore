@@ -4,5 +4,4 @@
 /public
 /var
 /vendor
-/composer.lock
 /Build/phpunit/.phpunit.cache
