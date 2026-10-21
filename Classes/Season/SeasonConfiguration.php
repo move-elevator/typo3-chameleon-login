@@ -56,11 +56,16 @@ final readonly class SeasonConfiguration
             if (count($images) > 1) {
                 $extension['loginBackgroundImages'] = $images;
             }
+            $darkImages = $this->resolveImagePaths((int) $season['uid'], 'image_dark');
+            if ([] !== $darkImages) {
+                $extension['loginBackgroundImagesDark'] = $darkImages;
+            }
         }
         $backgroundColor = (string) ($season['background_color'] ?? '');
         if ('' !== $backgroundColor) {
             $extension['loginBackgroundColor'] = $backgroundColor;
         }
+        $extension += $this->resolveDarkColors($season);
         $effect = (string) ($season['effect'] ?? '');
         if ('' !== $effect) {
             $extension['effect'] = $effect;
@@ -102,20 +107,52 @@ final readonly class SeasonConfiguration
      */
     private function resolveGradient(array $season): array
     {
-        $colors = LoginStyles::filterValidColors([
-            $season['gradient_color_1'] ?? '',
-            $season['gradient_color_2'] ?? '',
-            $season['gradient_color_3'] ?? '',
-            $season['gradient_color_4'] ?? '',
-        ]);
+        $colors = $this->resolveGradientColors($season, '');
         if (count($colors) < 2) {
             return [];
         }
 
-        return [
+        $gradient = [
             'loginBackgroundGradient' => $colors,
             'loginBackgroundGradientSpeed' => (string) ($season['gradient_speed'] ?? ''),
         ];
+        $darkColors = $this->resolveGradientColors($season, '_dark');
+        if (count($darkColors) > 1) {
+            $gradient['loginBackgroundGradientDark'] = $darkColors;
+        }
+
+        return $gradient;
+    }
+
+    /**
+     * @param array<string, mixed> $season
+     *
+     * @return list<string>
+     */
+    private function resolveGradientColors(array $season, string $suffix): array
+    {
+        return LoginStyles::filterValidColors([
+            $season['gradient_color_1'.$suffix] ?? '',
+            $season['gradient_color_2'.$suffix] ?? '',
+            $season['gradient_color_3'.$suffix] ?? '',
+            $season['gradient_color_4'.$suffix] ?? '',
+        ]);
+    }
+
+    /**
+     * @param array<string, mixed> $season
+     *
+     * @return array<string, string>
+     */
+    private function resolveDarkColors(array $season): array
+    {
+        return array_filter(
+            [
+                'loginBackgroundColorDark' => (string) ($season['background_color_dark'] ?? ''),
+                'loginHighlightColorDark' => (string) ($season['highlight_color_dark'] ?? ''),
+            ],
+            LoginStyles::isValidColor(...),
+        );
     }
 
     /**

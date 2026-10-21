@@ -216,5 +216,50 @@
 				<source>Access</source>
 			</segment>
 		</unit>
+		<unit id="season.imageDark">
+			<segment>
+				<source>Background image (dark mode)</source>
+			</segment>
+		</unit>
+		<unit id="season.imageDark.description">
+			<segment>
+				<source>AVIF or WebP. Shown instead of the regular image if the browser prefers a dark color scheme. With several images, a random one is shown.</source>
+			</segment>
+		</unit>
+		<unit id="season.gradientColor1Dark">
+			<segment>
+				<source>Gradient color 1 (dark mode)</source>
+			</segment>
+		</unit>
+		<unit id="season.gradientColor2Dark">
+			<segment>
+				<source>Gradient color 2 (dark mode)</source>
+			</segment>
+		</unit>
+		<unit id="season.gradientColor3Dark">
+			<segment>
+				<source>Gradient color 3 (dark mode, optional)</source>
+			</segment>
+		</unit>
+		<unit id="season.gradientColor4Dark">
+			<segment>
+				<source>Gradient color 4 (dark mode, optional)</source>
+			</segment>
+		</unit>
+		<unit id="season.backgroundColorDark">
+			<segment>
+				<source>Background color (dark mode)</source>
+			</segment>
+		</unit>
+		<unit id="season.highlightColorDark">
+			<segment>
+				<source>Highlight color (dark mode)</source>
+			</segment>
+		</unit>
+		<unit id="tab.darkMode">
+			<segment>
+				<source>Dark mode</source>
+			</segment>
+		</unit>
 	</file>
 </xliff>
