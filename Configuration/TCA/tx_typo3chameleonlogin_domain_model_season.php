@@ -209,6 +209,74 @@ return [
                 'eval' => 'trim',
             ],
         ],
+        'image_dark' => [
+            'label' => 'typo3_chameleon_login.db:season.imageDark',
+            'description' => 'typo3_chameleon_login.db:season.imageDark.description',
+            'displayCond' => 'FIELD:background_type:=:image',
+            'config' => [
+                'type' => 'file',
+                'allowed' => 'avif,webp',
+                'maxitems' => 10,
+                'overrideChildTca' => [
+                    'types' => [
+                        '0' => ['showitem' => '--palette--;;filePalette'],
+                        FileType::IMAGE->value => ['showitem' => '--palette--;;filePalette'],
+                    ],
+                ],
+            ],
+        ],
+        'gradient_color_1_dark' => [
+            'label' => 'typo3_chameleon_login.db:season.gradientColor1Dark',
+            'displayCond' => 'FIELD:background_type:=:gradient',
+            'config' => [
+                'type' => 'color',
+                'default' => '',
+                'searchable' => false,
+            ],
+        ],
+        'gradient_color_2_dark' => [
+            'label' => 'typo3_chameleon_login.db:season.gradientColor2Dark',
+            'displayCond' => 'FIELD:background_type:=:gradient',
+            'config' => [
+                'type' => 'color',
+                'default' => '',
+                'searchable' => false,
+            ],
+        ],
+        'gradient_color_3_dark' => [
+            'label' => 'typo3_chameleon_login.db:season.gradientColor3Dark',
+            'displayCond' => 'FIELD:background_type:=:gradient',
+            'config' => [
+                'type' => 'color',
+                'default' => '',
+                'searchable' => false,
+            ],
+        ],
+        'gradient_color_4_dark' => [
+            'label' => 'typo3_chameleon_login.db:season.gradientColor4Dark',
+            'displayCond' => 'FIELD:background_type:=:gradient',
+            'config' => [
+                'type' => 'color',
+                'default' => '',
+                'searchable' => false,
+            ],
+        ],
+        'background_color_dark' => [
+            'label' => 'typo3_chameleon_login.db:season.backgroundColorDark',
+            'config' => [
+                'type' => 'color',
+                'default' => '',
+                'searchable' => false,
+            ],
+        ],
+        'highlight_color_dark' => [
+            'label' => 'typo3_chameleon_login.db:season.highlightColorDark',
+            'config' => [
+                'type' => 'color',
+                'default' => '',
+                'searchable' => false,
+            ],
+        ],
         'hidden' => [
             'label' => 'typo3_chameleon_login.db:season.hidden',
             'config' => [
@@ -223,6 +291,7 @@ return [
             'showitem' => '
                 --div--;typo3_chameleon_login.db:tab.general, title,
                 --div--;typo3_chameleon_login.db:tab.appearance, background_type, image, gradient_color_1, gradient_color_2, gradient_color_3, gradient_color_4, gradient_speed, background_color, effect,
+                --div--;typo3_chameleon_login.db:tab.darkMode, image_dark, gradient_color_1_dark, gradient_color_2_dark, gradient_color_3_dark, gradient_color_4_dark, background_color_dark, highlight_color_dark,
                 --div--;typo3_chameleon_login.db:tab.branding, logo, logo_alt, highlight_color, footnote,
                 --div--;typo3_chameleon_login.db:tab.period, valid_from, valid_until, recurring, priority,
                 --div--;typo3_chameleon_login.db:tab.access, hidden

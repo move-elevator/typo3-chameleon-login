@@ -259,5 +259,59 @@
 				<target>Zugriff</target>
 			</segment>
 		</unit>
+		<unit id="season.imageDark">
+			<segment>
+				<source>Background image (dark mode)</source>
+				<target>Hintergrundbild (Dark Mode)</target>
+			</segment>
+		</unit>
+		<unit id="season.imageDark.description">
+			<segment>
+				<source>AVIF or WebP. Shown instead of the regular image if the browser prefers a dark color scheme. With several images, a random one is shown.</source>
+				<target>AVIF oder WebP. Wird statt des normalen Bildes angezeigt, wenn der Browser ein dunkles Farbschema bevorzugt. Bei mehreren Bildern wird ein zufälliges angezeigt.</target>
+			</segment>
+		</unit>
+		<unit id="season.gradientColor1Dark">
+			<segment>
+				<source>Gradient color 1 (dark mode)</source>
+				<target>Verlaufsfarbe 1 (Dark Mode)</target>
+			</segment>
+		</unit>
+		<unit id="season.gradientColor2Dark">
+			<segment>
+				<source>Gradient color 2 (dark mode)</source>
+				<target>Verlaufsfarbe 2 (Dark Mode)</target>
+			</segment>
+		</unit>
+		<unit id="season.gradientColor3Dark">
+			<segment>
+				<source>Gradient color 3 (dark mode, optional)</source>
+				<target>Verlaufsfarbe 3 (Dark Mode, optional)</target>
+			</segment>
+		</unit>
+		<unit id="season.gradientColor4Dark">
+			<segment>
+				<source>Gradient color 4 (dark mode, optional)</source>
+				<target>Verlaufsfarbe 4 (Dark Mode, optional)</target>
+			</segment>
+		</unit>
+		<unit id="season.backgroundColorDark">
+			<segment>
+				<source>Background color (dark mode)</source>
+				<target>Hintergrundfarbe (Dark Mode)</target>
+			</segment>
+		</unit>
+		<unit id="season.highlightColorDark">
+			<segment>
+				<source>Highlight color (dark mode)</source>
+				<target>Akzentfarbe (Dark Mode)</target>
+			</segment>
+		</unit>
+		<unit id="tab.darkMode">
+			<segment>
+				<source>Dark mode</source>
+				<target>Dark Mode</target>
+			</segment>
+		</unit>
 	</file>
 </xliff>

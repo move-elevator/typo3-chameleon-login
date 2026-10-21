@@ -55,4 +55,34 @@ final class LoginStylesTest extends TestCase
             LoginStyles::gradientVariables(['#000', '#fff'], 'unknown'),
         );
     }
+
+    #[Test]
+    public function darkModeWrapsCssInMediaQuery(): void
+    {
+        self::assertSame(
+            '@media (prefers-color-scheme: dark) { :root { --x: 1; } }',
+            LoginStyles::darkMode(':root { --x: 1; }'),
+        );
+    }
+
+    #[Test]
+    public function darkModeSkipsEmptyCss(): void
+    {
+        self::assertSame('', LoginStyles::darkMode(''));
+    }
+
+    #[Test]
+    public function highlightColorStylesSetLoginAndButtonVariables(): void
+    {
+        $css = LoginStyles::highlightColorStyles('#c00');
+
+        self::assertStringContainsString('--typo3-login-highlight: #c00;', $css);
+        self::assertStringContainsString('--typo3-btn-bg: #c00;', $css);
+    }
+
+    #[Test]
+    public function highlightColorStylesRejectInvalidColors(): void
+    {
+        self::assertSame('', LoginStyles::highlightColorStyles('#fff; } body { display: none'));
+    }
 }

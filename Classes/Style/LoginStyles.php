@@ -42,15 +42,54 @@ final class LoginStyles
      */
     public static function gradientVariables(array $colors, string $speed): string
     {
-        $validColors = self::filterValidColors($colors);
-        if (count($validColors) < 2) {
+        $gradient = self::gradient($colors);
+        if ('' === $gradient) {
             return '';
         }
 
         return sprintf(
-            ':root { --chameleon-login-gradient: linear-gradient(135deg, %s); --chameleon-login-gradient-duration: %ds; }',
-            implode(', ', $validColors),
+            ':root { --chameleon-login-gradient: %s; --chameleon-login-gradient-duration: %ds; }',
+            $gradient,
             self::GRADIENT_DURATIONS[$speed] ?? self::GRADIENT_DURATIONS['medium'],
         );
+    }
+
+    /**
+     * Returns the gradient as CSS value, or an empty string if fewer than two valid colors are given.
+     *
+     * @param array<mixed> $colors
+     */
+    public static function gradient(array $colors): string
+    {
+        $validColors = self::filterValidColors($colors);
+
+        return count($validColors) < 2 ? '' : sprintf('linear-gradient(135deg, %s)', implode(', ', $validColors));
+    }
+
+    /**
+     * Mirrors the variables the core sets for `loginHighlightColor`, so a dark mode color can override them.
+     */
+    public static function highlightColorStyles(string $color): string
+    {
+        if (false === self::isValidColor($color)) {
+            return '';
+        }
+
+        return sprintf(
+            '.typo3-login { --typo3-login-highlight: %1$s; }'
+            .' .btn-login {'
+            .' --typo3-btn-bg: %1$s; --typo3-btn-border-color: hsl(from %1$s h s calc(l - 5));'
+            .' --typo3-btn-hover-bg: hsl(from %1$s h s calc(l - 3)); --typo3-btn-hover-border-color: hsl(from %1$s h s calc(l - 8));'
+            .' --typo3-btn-focus-bg: hsl(from %1$s h s calc(l - 6)); --typo3-btn-focus-border-color: hsl(from %1$s h s calc(l - 11));'
+            .' --typo3-btn-disabled-bg: %1$s; --typo3-btn-disabled-border-color: hsl(from %1$s h s calc(l - 5));'
+            .' --typo3-btn-color: #fff; --typo3-btn-hover-color: #fff; --typo3-btn-focus-color: #fff; --typo3-btn-disabled-color: #fff; }'
+            .' .card-login .card-footer { border-color: %1$s; }',
+            $color,
+        );
+    }
+
+    public static function darkMode(string $css): string
+    {
+        return '' === $css ? '' : sprintf('@media (prefers-color-scheme: dark) { %s }', $css);
     }
 }

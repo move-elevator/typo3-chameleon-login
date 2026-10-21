@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace MoveElevator\Typo3ChameleonLogin\EventListener;
 
+use MoveElevator\Typo3ChameleonLogin\Style\LoginStyles;
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\LoginProvider\Event\ModifyPageLayoutOnLoginProviderSelectionEvent;
 use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Page\PageRenderer;
@@ -26,31 +28,39 @@ final readonly class RandomizeLoginBackground
 
     /**
      * The core has already added its background image styles when this event is dispatched,
-     * so the randomly picked image is added as a later inline block that overrides them.
+     * so the randomly picked images are added as later inline blocks that override them.
      */
     #[AsEventListener('typo3-chameleon-login/randomize-background')]
     public function __invoke(ModifyPageLayoutOnLoginProviderSelectionEvent $event): void
     {
-        $images = (array) ($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundImages'] ?? []);
-        if (count($images) < 2) {
-            return;
+        $configuration = $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login'] ?? [];
+
+        $images = (array) ($configuration['loginBackgroundImages'] ?? []);
+        if (count($images) > 1) {
+            $this->addBackgroundImage('typo3-chameleon-login-random-background', $images, $event->getRequest(), false);
         }
 
+        $darkImages = (array) ($configuration['loginBackgroundImagesDark'] ?? []);
+        if ([] !== $darkImages) {
+            $this->addBackgroundImage('typo3-chameleon-login-random-background-dark', $darkImages, $event->getRequest(), true);
+        }
+    }
+
+    /**
+     * @param array<mixed> $images
+     */
+    private function addBackgroundImage(string $name, array $images, ServerRequestInterface $request, bool $darkMode): void
+    {
         try {
             $uri = (string) $this->resourcePublisher->generateUri(
                 $this->resourceFactory->createPublicResource((string) $images[array_rand($images)]),
-                $event->getRequest(),
+                $request,
             );
         } catch (SystemResourceException) {
             return;
         }
 
-        $this->pageRenderer->addCssInlineBlock(
-            'typo3-chameleon-login-random-background',
-            sprintf('.typo3-login { background-image: url("%s"); }', GeneralUtility::sanitizeCssVariableValue($uri)),
-            null,
-            false,
-            true,
-        );
+        $css = sprintf('.typo3-login { background-image: url("%s"); }', GeneralUtility::sanitizeCssVariableValue($uri));
+        $this->pageRenderer->addCssInlineBlock($name, $darkMode ? LoginStyles::darkMode($css) : $css, null, false, true);
     }
 }
