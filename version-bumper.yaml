@@ -1,2 +1,13 @@
 presets:
   - name: conventional-commits
+
+filesToModify:
+  - path: composer.json
+    patterns:
+      - '"version": "{%version%}"'
+    reportUnmatched: true
+    postActions:
+      - composer-lock
+
+releaseOptions:
+  commitMessage: 'chore(release): version {%version%}'

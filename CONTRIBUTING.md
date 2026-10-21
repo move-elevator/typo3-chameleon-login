@@ -88,16 +88,18 @@ Commit messages follow [Conventional Commits](https://www.conventionalcommits.or
 
 ## Create a release
 
-Versions are managed as Git tags by [version-bumper](https://github.com/eliashaeussler/version-bumper). It derives the next version from the Conventional Commits since the last tag:
+Releases are created with [version-bumper](https://github.com/eliashaeussler/version-bumper). It derives the next version from the Conventional Commits since the last tag, writes it to `extra.typo3/cms.version` in `composer.json` (shown as extension version in TYPO3), updates `composer.lock`, and creates a release commit and tag:
 
 ```bash
 # Preview the next version
 ddev composer bump-version --dry-run --release
 
-# Create the tag
+# Create the release commit and tag
 ddev composer bump-version --release
-git push origin --tags
+git push --follow-tags
 ```
+
+The version lives in `extra` on purpose: Composer and Packagist take the version from the Git tag and ignore this field.
 
 Pass a range (`major`, `minor`, `patch`) or an explicit version to override the detected one, e.g. `ddev composer bump-version 0.1.0 --release` for the first release.
 
