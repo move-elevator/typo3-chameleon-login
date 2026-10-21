@@ -52,7 +52,8 @@
 	},
 	"extra": {
 		"typo3/cms": {
-			"extension-key": "typo3_chameleon_login"
+			"extension-key": "typo3_chameleon_login",
+			"version": "0.0.0"
 		}
 	},
 	"scripts": {
