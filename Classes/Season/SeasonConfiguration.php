@@ -189,6 +189,10 @@ final readonly class SeasonConfiguration
     {
         $urls = [];
         foreach ($this->fileRepository->findByRelation(self::TABLE, $field, $uid) as $reference) {
+            // Outside the frontend, findByRelation() also returns hidden references
+            if ((bool) ($reference->getReferenceProperties()['hidden'] ?? false)) {
+                continue;
+            }
             $url = (string) $reference->getOriginalFile()->getPublicUrl();
             // Defense in depth: skip paths containing characters that could
             // break out of a CSS `url('…')` declaration when consumed downstream.
