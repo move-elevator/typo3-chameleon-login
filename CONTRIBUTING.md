@@ -88,20 +88,26 @@ Commit messages follow [Conventional Commits](https://www.conventionalcommits.or
 
 ## Create a release
 
-Releases are created with [version-bumper](https://github.com/eliashaeussler/version-bumper). It derives the next version from the Conventional Commits since the last tag, writes it to `extra.typo3/cms.version` in `composer.json` (shown as extension version in TYPO3), updates `composer.lock`, and creates a release commit and tag:
+Releases are prepared with [version-bumper](https://github.com/eliashaeussler/version-bumper). It derives the next version from the Conventional Commits since the last tag, writes it to `extra.typo3/cms.version` in `composer.json` (shown as extension version in TYPO3), updates `composer.lock` and creates a release commit. `main` is protected, so the release commit goes through a pull request:
 
 ```bash
+git switch -c release/x.y.z origin/main
+
 # Preview the next version
 ddev composer bump-version --dry-run --release
 
-# Create the release commit and tag
+# Create the release commit
 ddev composer bump-version --release
-git push --follow-tags
+git push -u origin release/x.y.z
 ```
+
+Pass a range (`major`, `minor`, `patch`) or an explicit version to override the detected one, e.g. `ddev composer bump-version 0.1.0 --release` for the first release.
+
+After the pull request is merged, tag the release commit on `main`, e.g. with a GitHub release (tag `x.y.z`, target `main`). version-bumper does not create the tag: "Rebase and merge" gives the commit a new hash, so a tag created on the release branch would not point to a commit on `main`.
 
 The version lives in `extra` on purpose: Composer and Packagist take the version from the Git tag and ignore this field.
 
-Pass a range (`major`, `minor`, `patch`) or an explicit version to override the detected one, e.g. `ddev composer bump-version 0.1.0 --release` for the first release.
+Commits created inside DDEV use the Git identity of the container. To commit with your own name, add a `.gitconfig` with your `[user]` section to `~/.ddev/homeadditions/` and run `ddev restart`.
 
 ## Submit a pull request
 
