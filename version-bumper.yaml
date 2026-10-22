@@ -11,3 +11,4 @@ filesToModify:
 
 releaseOptions:
   commitMessage: 'chore(release): version {%version%}'
+  createTag: false
