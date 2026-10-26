@@ -256,10 +256,5 @@
 				<source>Highlight color (dark mode)</source>
 			</segment>
 		</unit>
-		<unit id="tab.darkMode">
-			<segment>
-				<source>Dark mode</source>
-			</segment>
-		</unit>
 	</file>
 </xliff>

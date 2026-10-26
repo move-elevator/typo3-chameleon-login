@@ -307,11 +307,5 @@
 				<target>Akzentfarbe (Dark Mode)</target>
 			</segment>
 		</unit>
-		<unit id="tab.darkMode">
-			<segment>
-				<source>Dark mode</source>
-				<target>Dark Mode</target>
-			</segment>
-		</unit>
 	</file>
 </xliff>

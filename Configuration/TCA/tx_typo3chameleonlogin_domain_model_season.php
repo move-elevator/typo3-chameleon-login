@@ -289,13 +289,31 @@ return [
     'types' => [
         '0' => [
             'showitem' => '
-                --div--;typo3_chameleon_login.db:tab.general, title,
-                --div--;typo3_chameleon_login.db:tab.appearance, background_type, image, gradient_color_1, gradient_color_2, gradient_color_3, gradient_color_4, gradient_speed, background_color, effect,
-                --div--;typo3_chameleon_login.db:tab.darkMode, image_dark, gradient_color_1_dark, gradient_color_2_dark, gradient_color_3_dark, gradient_color_4_dark, background_color_dark, highlight_color_dark,
-                --div--;typo3_chameleon_login.db:tab.branding, logo, logo_alt, highlight_color, footnote,
-                --div--;typo3_chameleon_login.db:tab.period, valid_from, valid_until, recurring, priority,
+                --div--;typo3_chameleon_login.db:tab.general, title, priority,
+                --div--;typo3_chameleon_login.db:tab.appearance, --palette--;;background, image, image_dark, --palette--;;gradientColors, --palette--;;backgroundColor, effect,
+                --div--;typo3_chameleon_login.db:tab.branding, logo, logo_alt, --palette--;;highlightColor, footnote,
+                --div--;typo3_chameleon_login.db:tab.period, valid_from, valid_until, recurring,
                 --div--;typo3_chameleon_login.db:tab.access, hidden
             ',
+        ],
+    ],
+    'palettes' => [
+        'background' => [
+            'showitem' => 'background_type, gradient_speed',
+        ],
+        'gradientColors' => [
+            'showitem' => '
+                gradient_color_1, gradient_color_1_dark, --linebreak--,
+                gradient_color_2, gradient_color_2_dark, --linebreak--,
+                gradient_color_3, gradient_color_3_dark, --linebreak--,
+                gradient_color_4, gradient_color_4_dark
+            ',
+        ],
+        'backgroundColor' => [
+            'showitem' => 'background_color, background_color_dark',
+        ],
+        'highlightColor' => [
+            'showitem' => 'highlight_color, highlight_color_dark',
         ],
     ],
 ];
