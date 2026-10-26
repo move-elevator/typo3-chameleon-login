@@ -87,16 +87,23 @@ final class LoginStylesTest extends TestCase
         self::assertSame('', LoginStyles::highlightColorStyles('#fff; } body { display: none'));
     }
 
-    #[Test]
-    public function backgroundPositionIsTheCenterOfTheFocusArea(): void
+    /**
+     * @return iterable<string, array{Area, string}>
+     */
+    public static function focusAreaProvider(): iterable
     {
-        self::assertSame('20% 75%', LoginStyles::backgroundPosition(new Area(0.1, 0.5, 0.2, 0.5)));
+        yield 'centered' => [new Area(1 / 3, 1 / 3, 1 / 3, 1 / 3), '50% 50%'];
+        yield 'top left corner' => [new Area(0.0, 0.0, 0.25, 0.2), '0% 0%'];
+        yield 'bottom right corner' => [new Area(0.75, 0.8, 0.25, 0.2), '100% 100%'];
+        yield 'in between' => [new Area(0.1, 0.3, 0.2, 0.4), '12.5% 50%'];
+        yield 'full width' => [new Area(0.0, 0.1, 1.0, 0.2), '50% 12.5%'];
     }
 
     #[Test]
-    public function backgroundPositionIsRounded(): void
+    #[DataProvider('focusAreaProvider')]
+    public function backgroundPositionKeepsTheFocusAreaInView(Area $focusArea, string $expected): void
     {
-        self::assertSame('50% 33.33%', LoginStyles::backgroundPosition(new Area(1 / 3, 0.0, 1 / 3, 2 / 3)));
+        self::assertSame($expected, LoginStyles::backgroundPosition($focusArea));
     }
 
     #[Test]
