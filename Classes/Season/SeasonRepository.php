@@ -17,8 +17,6 @@ final readonly class SeasonRepository
     ) {}
 
     /**
-     * Returns the enabled seasons in order of precedence: the first active season wins.
-     *
      * @return list<array<string, mixed>>
      */
     public function findEnabled(): array
@@ -27,8 +25,6 @@ final readonly class SeasonRepository
     }
 
     /**
-     * Returns all seasons including disabled ones in order of precedence.
-     *
      * @return list<array<string, mixed>>
      */
     public function findAll(): array
