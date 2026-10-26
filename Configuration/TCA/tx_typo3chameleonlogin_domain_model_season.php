@@ -16,6 +16,10 @@ return [
             'disabled' => 'hidden',
         ],
         'iconfile' => 'EXT:typo3_chameleon_login/Resources/Public/Icons/season.svg',
+        'rootLevel' => 1,
+        'security' => [
+            'ignoreRootLevelRestriction' => true,
+        ],
     ],
     'columns' => [
         'title' => [

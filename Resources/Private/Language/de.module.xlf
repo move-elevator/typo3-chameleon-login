@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="de">
+	<file id="f1">
+		<unit id="title">
+			<segment>
+				<source>Login seasons</source>
+				<target>Login-Saisons</target>
+			</segment>
+		</unit>
+		<unit id="short_description">
+			<segment>
+				<source>Manage seasonal designs of the backend login</source>
+				<target>Saisonale Designs des Backend-Logins verwalten</target>
+			</segment>
+		</unit>
+		<unit id="description">
+			<segment>
+				<source>Shows all login seasons with their period, priority and whether they are currently active on the login screen.</source>
+				<target>Zeigt alle Login-Saisons mit Zeitraum, Priorität und ob sie gerade auf dem Login angezeigt werden.</target>
+			</segment>
+		</unit>
+		<unit id="season.new">
+			<segment>
+				<source>Create new season</source>
+				<target>Neue Saison anlegen</target>
+			</segment>
+		</unit>
+		<unit id="empty.title">
+			<segment>
+				<source>No seasons yet</source>
+				<target>Noch keine Saisons</target>
+			</segment>
+		</unit>
+		<unit id="empty.message">
+			<segment>
+				<source>Create a season to change the look of the backend login for a period of time.</source>
+				<target>Lege eine Saison an, um das Aussehen des Backend-Logins für einen Zeitraum zu ändern.</target>
+			</segment>
+		</unit>
+		<unit id="column.period">
+			<segment>
+				<source>Period</source>
+				<target>Zeitraum</target>
+			</segment>
+		</unit>
+		<unit id="column.status">
+			<segment>
+				<source>Status</source>
+				<target>Status</target>
+			</segment>
+		</unit>
+		<unit id="column.actions">
+			<segment>
+				<source>Actions</source>
+				<target>Aktionen</target>
+			</segment>
+		</unit>
+		<unit id="period.yearly">
+			<segment>
+				<source>Yearly</source>
+				<target>Jährlich</target>
+			</segment>
+		</unit>
+		<unit id="status.active">
+			<segment>
+				<source>Active</source>
+				<target>Aktiv</target>
+			</segment>
+		</unit>
+		<unit id="status.overridden">
+			<segment>
+				<source>Overridden by higher priority</source>
+				<target>Durch höhere Priorität überlagert</target>
+			</segment>
+		</unit>
+		<unit id="status.upcoming">
+			<segment>
+				<source>Upcoming</source>
+				<target>Geplant</target>
+			</segment>
+		</unit>
+		<unit id="status.expired">
+			<segment>
+				<source>Expired</source>
+				<target>Abgelaufen</target>
+			</segment>
+		</unit>
+		<unit id="status.hidden">
+			<segment>
+				<source>Disabled</source>
+				<target>Deaktiviert</target>
+			</segment>
+		</unit>
+	</file>
+</xliff>

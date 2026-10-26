@@ -49,12 +49,31 @@ vendor/bin/typo3 cache:flush
 
 ## 🚀 Quick start
 
-1. Create a sys folder, e.g. "Login seasons".
-2. Add records of type "Login season" with the list module.
-3. Required fields: title, valid from, valid until and either an image or at least two gradient colors. Background images must be AVIF or WebP, logos SVG, AVIF or WebP. The extension delivers the original file, so only compressed modern formats are accepted.
-4. Optional fields: background color, effect, logo, highlight color, footnote, dark mode variants, yearly recurring, priority, disabled.
+1. Open the module "Site → Login seasons" and create a season.
+2. Required fields: title, valid from, valid until and either an image or at least two gradient colors. Background images must be AVIF or WebP, logos SVG, AVIF or WebP. The extension delivers the original file, so only compressed modern formats are accepted.
+3. Optional fields: background color, effect, logo, highlight color, footnote, dark mode variants, yearly recurring, priority, disabled.
 
-The list view sorts records by priority and shows title, period, recurring and priority by default.
+The module lists all seasons by priority and shows which one is currently active on the login screen, which ones are overridden by a season with a higher priority, and which ones are upcoming, expired or disabled.
+
+Seasons are stored on the root level (pid 0), so no sys folder is needed.
+
+### Permissions for editors
+
+Non-admin editors need a backend group with:
+
+- Access to the module "Login seasons" (Access Lists → Modules)
+- Read and write access to the tables "Login Season" and "File Reference" (Access Lists → Tables)
+- A file mount with the season images and logos
+
+### Upgrading from 0.1
+
+Version 0.1 stored seasons in a sys folder. Run the upgrade wizard "Move login seasons to the root level" to move existing seasons to the root level:
+
+```bash
+vendor/bin/typo3 upgrade:run typo3ChameleonLogin_seasonRootLevelMigration
+```
+
+Afterwards, the sys folder can be deleted.
 
 ## ⚙️ Configuration
 

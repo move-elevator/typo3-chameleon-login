@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
+	<file id="f1">
+		<unit id="title">
+			<segment>
+				<source>Login seasons</source>
+			</segment>
+		</unit>
+		<unit id="short_description">
+			<segment>
+				<source>Manage seasonal designs of the backend login</source>
+			</segment>
+		</unit>
+		<unit id="description">
+			<segment>
+				<source>Shows all login seasons with their period, priority and whether they are currently active on the login screen.</source>
+			</segment>
+		</unit>
+		<unit id="season.new">
+			<segment>
+				<source>Create new season</source>
+			</segment>
+		</unit>
+		<unit id="empty.title">
+			<segment>
+				<source>No seasons yet</source>
+			</segment>
+		</unit>
+		<unit id="empty.message">
+			<segment>
+				<source>Create a season to change the look of the backend login for a period of time.</source>
+			</segment>
+		</unit>
+		<unit id="column.period">
+			<segment>
+				<source>Period</source>
+			</segment>
+		</unit>
+		<unit id="column.status">
+			<segment>
+				<source>Status</source>
+			</segment>
+		</unit>
+		<unit id="column.actions">
+			<segment>
+				<source>Actions</source>
+			</segment>
+		</unit>
+		<unit id="period.yearly">
+			<segment>
+				<source>Yearly</source>
+			</segment>
+		</unit>
+		<unit id="status.active">
+			<segment>
+				<source>Active</source>
+			</segment>
+		</unit>
+		<unit id="status.overridden">
+			<segment>
+				<source>Overridden by higher priority</source>
+			</segment>
+		</unit>
+		<unit id="status.upcoming">
+			<segment>
+				<source>Upcoming</source>
+			</segment>
+		</unit>
+		<unit id="status.expired">
+			<segment>
+				<source>Expired</source>
+			</segment>
+		</unit>
+		<unit id="status.hidden">
+			<segment>
+				<source>Disabled</source>
+			</segment>
+		</unit>
+	</file>
+</xliff>
