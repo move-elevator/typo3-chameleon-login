@@ -93,7 +93,7 @@ Instead of an image, a season can use the background type "Animated gradient" wi
 
 ### Dark mode
 
-The login screen follows the color scheme of the operating system or browser. In the tab "Dark mode", a season can define its own background images, background color, gradient colors and highlight color for a dark color scheme. Empty fields fall back to the regular values. The dark gradient is only used if the season has the background type "Animated gradient" and at least two dark colors.
+The login screen follows the color scheme of the operating system or browser. A season can define its own background images, background color, gradient colors and highlight color for a dark color scheme. The dark mode fields sit next to their regular counterparts. Empty fields fall back to the regular values. The dark gradient is only used if the season has the background type "Animated gradient" and at least two dark colors.
 
 For the logo, use an SVG that adapts to the color scheme itself, e.g. with `prefers-color-scheme` inside the SVG.
 
