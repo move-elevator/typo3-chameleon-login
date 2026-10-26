@@ -6,7 +6,6 @@ namespace MoveElevator\Typo3ChameleonLogin\Season;
 
 use DateTimeImmutable;
 use MoveElevator\Typo3ChameleonLogin\Style\LoginStyles;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\FileRepository;
 
 use function array_filter;
@@ -16,10 +15,8 @@ use function trim;
 
 final readonly class SeasonConfiguration
 {
-    private const string TABLE = 'tx_typo3chameleonlogin_domain_model_season';
-
     public function __construct(
-        private ConnectionPool $connectionPool,
+        private SeasonRepository $seasonRepository,
         private FileRepository $fileRepository,
         private SeasonMatcher $seasonMatcher,
     ) {}
@@ -81,17 +78,8 @@ final readonly class SeasonConfiguration
      */
     private function findActiveSeason(): ?array
     {
-        $rows = $this->connectionPool
-            ->getQueryBuilderForTable(self::TABLE)
-            ->select('*')
-            ->from(self::TABLE)
-            ->orderBy('priority', 'DESC')
-            ->addOrderBy('uid', 'ASC')
-            ->executeQuery()
-            ->fetchAllAssociative();
-
         $today = new DateTimeImmutable('today');
-        foreach ($rows as $row) {
+        foreach ($this->seasonRepository->findEnabled() as $row) {
             if ($this->seasonMatcher->isActive($row, $today)) {
                 return $row;
             }
@@ -188,7 +176,7 @@ final readonly class SeasonConfiguration
     private function resolveImagePaths(int $uid, string $field): array
     {
         $urls = [];
-        foreach ($this->fileRepository->findByRelation(self::TABLE, $field, $uid) as $reference) {
+        foreach ($this->fileRepository->findByRelation(SeasonRepository::TABLE, $field, $uid) as $reference) {
             // Outside the frontend, findByRelation() also returns hidden references
             if ((bool) ($reference->getReferenceProperties()['hidden'] ?? false)) {
                 continue;
