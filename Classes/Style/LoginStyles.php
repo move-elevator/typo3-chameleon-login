@@ -97,9 +97,8 @@ final class LoginStyles
     }
 
     /**
-     * Returns the center of the focus area as `background-position`, or an empty string if no
-     * focus area is set. A percentage aligns the same point of image and container, so the focus
-     * stays in view however the image is cut.
+     * Returns the `background-position` that keeps the whole focus area in view as long as it fits
+     * on the screen, or an empty string if no focus area is set.
      */
     public static function backgroundPosition(Area $focusArea): string
     {
@@ -109,13 +108,22 @@ final class LoginStyles
 
         return sprintf(
             '%s%% %s%%',
-            round(($focusArea->getOffsetLeft() + $focusArea->getWidth() / 2) * 100, 2),
-            round(($focusArea->getOffsetTop() + $focusArea->getHeight() / 2) * 100, 2),
+            self::focusOffset($focusArea->getOffsetLeft(), $focusArea->getWidth()),
+            self::focusOffset($focusArea->getOffsetTop(), $focusArea->getHeight()),
         );
     }
 
     public static function darkMode(string $css): string
     {
         return '' === $css ? '' : sprintf('@media (prefers-color-scheme: dark) { %s }', $css);
+    }
+
+    /**
+     * A percentage aligns the same point of image and container: offset / (1 - size) puts the
+     * leading edge of the focus area as far in as the trailing edge, so neither is cut off first.
+     */
+    private static function focusOffset(float $offset, float $size): float
+    {
+        return $size >= 1.0 ? 50.0 : round($offset / (1 - $size) * 100, 2);
     }
 }
