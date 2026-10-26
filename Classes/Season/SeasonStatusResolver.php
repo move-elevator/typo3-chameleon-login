@@ -13,9 +13,9 @@ final readonly class SeasonStatusResolver
     ) {}
 
     /**
-     * @param list<array<string, mixed>> $seasons in order of precedence
+     * @param list<array<string, mixed>> $seasons
      *
-     * @return array<int, SeasonStatus> indexed by uid
+     * @return array<int, SeasonStatus>
      */
     public function resolve(array $seasons, DateTimeImmutable $today): array
     {
