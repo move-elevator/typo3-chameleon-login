@@ -6,6 +6,7 @@ namespace MoveElevator\Typo3ChameleonLogin\Season;
 
 use DateTimeImmutable;
 use MoveElevator\Typo3ChameleonLogin\Style\LoginStyles;
+use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
 use TYPO3\CMS\Core\Resource\FileRepository;
 
 use function array_filter;
@@ -46,14 +47,12 @@ final readonly class SeasonConfiguration
         if (($season['background_type'] ?? '') === 'gradient') {
             $extension = $this->resolveGradient($season);
         } else {
-            $images = $this->resolveImagePaths((int) $season['uid'], 'image');
+            $images = $this->resolveImages((int) $season['uid'], 'image');
             if ([] !== $images) {
-                $backend['loginBackgroundImage'] = $images[0];
-            }
-            if (count($images) > 1) {
+                $backend['loginBackgroundImage'] = $images[0]['url'];
                 $extension['loginBackgroundImages'] = $images;
             }
-            $darkImages = $this->resolveImagePaths((int) $season['uid'], 'image_dark');
+            $darkImages = $this->resolveImages((int) $season['uid'], 'image_dark');
             if ([] !== $darkImages) {
                 $extension['loginBackgroundImagesDark'] = $darkImages;
             }
@@ -153,7 +152,7 @@ final readonly class SeasonConfiguration
     private function resolveBranding(array $season): array
     {
         $branding = [];
-        $logo = $this->resolveImagePaths((int) $season['uid'], 'logo')[0] ?? null;
+        $logo = $this->resolveImages((int) $season['uid'], 'logo')[0]['url'] ?? null;
         if (null !== $logo) {
             $branding['loginLogo'] = $logo;
             $branding['loginLogoAlt'] = trim((string) ($season['logo_alt'] ?? ''));
@@ -171,24 +170,26 @@ final readonly class SeasonConfiguration
     }
 
     /**
-     * @return list<string>
+     * @return list<array{url: string, position: string}>
      */
-    private function resolveImagePaths(int $uid, string $field): array
+    private function resolveImages(int $uid, string $field): array
     {
-        $urls = [];
+        $images = [];
         foreach ($this->fileRepository->findByRelation(SeasonRepository::TABLE, $field, $uid) as $reference) {
+            $properties = $reference->getReferenceProperties();
             // Outside the frontend, findByRelation() also returns hidden references
-            if ((bool) ($reference->getReferenceProperties()['hidden'] ?? false)) {
+            if ((bool) ($properties['hidden'] ?? false)) {
                 continue;
             }
             $url = (string) $reference->getOriginalFile()->getPublicUrl();
             // Defense in depth: skip paths containing characters that could
             // break out of a CSS `url('…')` declaration when consumed downstream.
             if ('' !== $url && 1 !== preg_match('/[\'"\\\\(){};\r\n\t]/', $url)) {
-                $urls[] = $url;
+                $focusArea = CropVariantCollection::create((string) ($properties['crop'] ?? ''))->getFocusArea();
+                $images[] = ['url' => $url, 'position' => LoginStyles::backgroundPosition($focusArea)];
             }
         }
 
-        return $urls;
+        return $images;
     }
 }

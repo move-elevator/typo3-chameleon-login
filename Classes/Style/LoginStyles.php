@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace MoveElevator\Typo3ChameleonLogin\Style;
 
+use TYPO3\CMS\Core\Imaging\ImageManipulation\Area;
+
 use function array_filter;
 use function array_values;
 use function count;
 use function implode;
 use function is_string;
 use function preg_match;
+use function round;
 use function sprintf;
 
 final class LoginStyles
@@ -85,6 +88,29 @@ final class LoginStyles
             .' --typo3-btn-color: #fff; --typo3-btn-hover-color: #fff; --typo3-btn-focus-color: #fff; --typo3-btn-disabled-color: #fff; }'
             .' .card-login .card-footer { border-color: %1$s; }',
             $color,
+        );
+    }
+
+    public static function isValidPosition(string $position): bool
+    {
+        return 1 === preg_match('/^\d{1,3}(\.\d{1,2})?% \d{1,3}(\.\d{1,2})?%$/', $position);
+    }
+
+    /**
+     * Returns the center of the focus area as `background-position`, or an empty string if no
+     * focus area is set. A percentage aligns the same point of image and container, so the focus
+     * stays in view however the image is cut.
+     */
+    public static function backgroundPosition(Area $focusArea): string
+    {
+        if ($focusArea->isEmpty()) {
+            return '';
+        }
+
+        return sprintf(
+            '%s%% %s%%',
+            round(($focusArea->getOffsetLeft() + $focusArea->getWidth() / 2) * 100, 2),
+            round(($focusArea->getOffsetTop() + $focusArea->getHeight() / 2) * 100, 2),
         );
     }
 

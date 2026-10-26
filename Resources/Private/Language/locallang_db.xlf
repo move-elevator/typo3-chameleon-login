@@ -256,5 +256,15 @@
 				<source>Highlight color (dark mode)</source>
 			</segment>
 		</unit>
+		<unit id="season.image.focusArea">
+			<segment>
+				<source>Focus area</source>
+			</segment>
+		</unit>
+		<unit id="season.image.focusArea.description">
+			<segment>
+				<source>Mark the important part of the image, e.g. text or a logo. It stays in view on small screens. Only the focus area is used, the image is not cropped.</source>
+			</segment>
+		</unit>
 	</file>
 </xliff>

@@ -63,6 +63,7 @@ Non-admin editors need a backend group with:
 
 - Access to the module "Login seasons" (Access Lists → Modules)
 - Read and write access to the tables "Login Season" and "File Reference" (Access Lists → Tables)
+- The allowed excludefield "File Reference: Image manipulation" to set a focus area (Access Lists → Allowed excludefields)
 - A file mount with the season images and logos
 
 ### Upgrading from 0.1
@@ -82,7 +83,7 @@ On the login, password reset and MFA screens, the extension merges the active se
 | Setting | Description |
 |---------|-------------|
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['loginBackgroundImage']` | Public URL of the active season's image |
-| `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundImages']` | All image URLs of the active season if it has more than one. The login screen picks one at random, `loginBackgroundImage` holds the first one as fallback |
+| `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundImages']` | All images of the active season, each with `url` and `position` (focus area as `background-position`, empty without focus area). The login screen picks one at random, `loginBackgroundImage` holds the first URL as fallback |
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['loginLogo']` and `['loginLogoAlt']` | Public URL and alternative text of the active season's logo |
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['loginHighlightColor']` | Highlight color of the active season (hex) |
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['loginFootnote']` | Footnote of the active season |
@@ -90,7 +91,7 @@ On the login, password reset and MFA screens, the extension merges the active se
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundGradient']` | Gradient colors (hex) of the active season, if it uses the background type "Animated gradient" |
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundGradientSpeed']` | Gradient animation speed: `slow`, `medium` or `fast` |
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['effect']` | Effect of the active season, e.g. `snow` |
-| `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundImagesDark']` | Image URLs for dark mode, one is picked at random |
+| `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundImagesDark']` | Images for dark mode in the same format, one is picked at random |
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundColorDark']` | Background color for dark mode (hex) |
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginBackgroundGradientDark']` | Gradient colors for dark mode (hex) |
 | `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['loginHighlightColorDark']` | Highlight color for dark mode (hex) |
@@ -109,6 +110,12 @@ The extension checks all enabled seasons, ordered by priority (highest first), t
 ### Animated gradient
 
 Instead of an image, a season can use the background type "Animated gradient" with two to four colors. The gradient slowly drifts across the login screen. For users who prefer reduced motion, it is shown as a static gradient.
+
+### Image focus area
+
+Background images fill the height of the screen. On narrow screens, parts of the image are cut off on the sides. To keep text or a logo in the image visible, open the image editor of a background image and move the focus area onto it. The login screen then positions the image so that the focus area stays in view.
+
+Only the focus area is used: the extension delivers the original file, so a crop in the image editor has no effect. Without a focus area, the image is centered.
 
 ### Dark mode
 

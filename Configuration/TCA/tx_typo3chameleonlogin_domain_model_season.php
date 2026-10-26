@@ -4,6 +4,36 @@ declare(strict_types=1);
 
 use TYPO3\CMS\Core\Resource\FileType;
 
+// Only the focus area is used: the login delivers the original file, so a crop is not applied.
+$backgroundImageChildTca = [
+    'columns' => [
+        'crop' => [
+            'label' => 'typo3_chameleon_login.db:season.image.focusArea',
+            'description' => 'typo3_chameleon_login.db:season.image.focusArea.description',
+            'config' => [
+                'cropVariants' => [
+                    'default' => [
+                        'title' => 'typo3_chameleon_login.db:season.image.focusArea',
+                        'allowedAspectRatios' => [
+                            'NaN' => [
+                                'title' => 'LLL:EXT:core/Resources/Private/Language/locallang_wizards.xlf:imwizard.ratio.free',
+                                'value' => 0.0,
+                            ],
+                        ],
+                        'selectedRatio' => 'NaN',
+                        'cropArea' => ['x' => 0.0, 'y' => 0.0, 'width' => 1.0, 'height' => 1.0],
+                        'focusArea' => ['x' => 1 / 3, 'y' => 1 / 3, 'width' => 1 / 3, 'height' => 1 / 3],
+                    ],
+                ],
+            ],
+        ],
+    ],
+    'types' => [
+        '0' => ['showitem' => 'crop, --palette--;;filePalette'],
+        FileType::IMAGE->value => ['showitem' => 'crop, --palette--;;filePalette'],
+    ],
+];
+
 return [
     'ctrl' => [
         'title' => 'typo3_chameleon_login.db:season',
@@ -52,12 +82,7 @@ return [
                 'type' => 'file',
                 'allowed' => 'avif,webp',
                 'maxitems' => 10,
-                'overrideChildTca' => [
-                    'types' => [
-                        '0' => ['showitem' => '--palette--;;filePalette'],
-                        FileType::IMAGE->value => ['showitem' => '--palette--;;filePalette'],
-                    ],
-                ],
+                'overrideChildTca' => $backgroundImageChildTca,
             ],
         ],
         'valid_from' => [
@@ -221,12 +246,7 @@ return [
                 'type' => 'file',
                 'allowed' => 'avif,webp',
                 'maxitems' => 10,
-                'overrideChildTca' => [
-                    'types' => [
-                        '0' => ['showitem' => '--palette--;;filePalette'],
-                        FileType::IMAGE->value => ['showitem' => '--palette--;;filePalette'],
-                    ],
-                ],
+                'overrideChildTca' => $backgroundImageChildTca,
             ],
         ],
         'gradient_color_1_dark' => [

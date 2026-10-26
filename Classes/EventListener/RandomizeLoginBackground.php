@@ -15,7 +15,6 @@ use TYPO3\CMS\Core\SystemResource\SystemResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 use function array_rand;
-use function count;
 use function sprintf;
 
 final readonly class RandomizeLoginBackground
@@ -28,7 +27,7 @@ final readonly class RandomizeLoginBackground
 
     /**
      * The core has already added its background image styles when this event is dispatched,
-     * so the randomly picked images are added as later inline blocks that override them.
+     * so the randomly picked image and its focus position are added as later inline blocks that override them.
      */
     #[AsEventListener('typo3-chameleon-login/randomize-background')]
     public function __invoke(ModifyPageLayoutOnLoginProviderSelectionEvent $event): void
@@ -36,7 +35,7 @@ final readonly class RandomizeLoginBackground
         $configuration = $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login'] ?? [];
 
         $images = (array) ($configuration['loginBackgroundImages'] ?? []);
-        if (count($images) > 1) {
+        if ([] !== $images) {
             $this->addBackgroundImage('typo3-chameleon-login-random-background', $images, $event->getRequest(), false);
         }
 
@@ -51,16 +50,22 @@ final readonly class RandomizeLoginBackground
      */
     private function addBackgroundImage(string $name, array $images, ServerRequestInterface $request, bool $darkMode): void
     {
+        $image = (array) $images[array_rand($images)];
         try {
             $uri = (string) $this->resourcePublisher->generateUri(
-                $this->resourceFactory->createPublicResource((string) $images[array_rand($images)]),
+                $this->resourceFactory->createPublicResource((string) ($image['url'] ?? '')),
                 $request,
             );
         } catch (SystemResourceException) {
             return;
         }
 
-        $css = sprintf('.typo3-login { background-image: url("%s"); }', GeneralUtility::sanitizeCssVariableValue($uri));
+        $css = sprintf('background-image: url("%s");', GeneralUtility::sanitizeCssVariableValue($uri));
+        $position = (string) ($image['position'] ?? '');
+        if (LoginStyles::isValidPosition($position)) {
+            $css .= sprintf(' background-position: %s;', $position);
+        }
+        $css = sprintf('.typo3-login { %s }', $css);
         $this->pageRenderer->addCssInlineBlock($name, $darkMode ? LoginStyles::darkMode($css) : $css, null, false, true);
     }
 }

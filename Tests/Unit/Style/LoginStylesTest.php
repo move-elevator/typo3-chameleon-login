@@ -7,6 +7,7 @@ namespace MoveElevator\Typo3ChameleonLogin\Tests\Unit\Style;
 use MoveElevator\Typo3ChameleonLogin\Style\LoginStyles;
 use PHPUnit\Framework\Attributes\{CoversClass, DataProvider, Test};
 use PHPUnit\Framework\TestCase;
+use TYPO3\CMS\Core\Imaging\ImageManipulation\Area;
 
 #[CoversClass(LoginStyles::class)]
 final class LoginStylesTest extends TestCase
@@ -84,5 +85,42 @@ final class LoginStylesTest extends TestCase
     public function highlightColorStylesRejectInvalidColors(): void
     {
         self::assertSame('', LoginStyles::highlightColorStyles('#fff; } body { display: none'));
+    }
+
+    #[Test]
+    public function backgroundPositionIsTheCenterOfTheFocusArea(): void
+    {
+        self::assertSame('20% 75%', LoginStyles::backgroundPosition(new Area(0.1, 0.5, 0.2, 0.5)));
+    }
+
+    #[Test]
+    public function backgroundPositionIsRounded(): void
+    {
+        self::assertSame('50% 33.33%', LoginStyles::backgroundPosition(new Area(1 / 3, 0.0, 1 / 3, 2 / 3)));
+    }
+
+    #[Test]
+    public function backgroundPositionIsEmptyWithoutFocusArea(): void
+    {
+        self::assertSame('', LoginStyles::backgroundPosition(Area::createEmpty()));
+    }
+
+    /**
+     * @return iterable<string, array{string, bool}>
+     */
+    public static function positionProvider(): iterable
+    {
+        yield 'integers' => ['20% 75%', true];
+        yield 'decimals' => ['50% 33.33%', true];
+        yield 'keywords' => ['left bottom', false];
+        yield 'css injection' => ['0% 0%; } body { display: none', false];
+        yield 'empty' => ['', false];
+    }
+
+    #[Test]
+    #[DataProvider('positionProvider')]
+    public function validatesBackgroundPositions(string $position, bool $expected): void
+    {
+        self::assertSame($expected, LoginStyles::isValidPosition($position));
     }
 }
