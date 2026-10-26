@@ -10,7 +10,7 @@ return [
         'access' => 'user',
         'workspaces' => 'live',
         'path' => '/module/site/login-seasons',
-        'icon' => 'EXT:typo3_chameleon_login/Resources/Public/Icons/season.svg',
+        'icon' => 'EXT:typo3_chameleon_login/Resources/Public/Icons/module-seasons.svg',
         'labels' => 'typo3_chameleon_login.module',
         'routes' => [
             '_default' => [
