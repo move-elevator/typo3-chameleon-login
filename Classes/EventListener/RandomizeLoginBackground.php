@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MoveElevator\Typo3ChameleonLogin\EventListener;
 
+use MoveElevator\Typo3ChameleonLogin\Settings\ExtensionSettings;
 use MoveElevator\Typo3ChameleonLogin\Style\LoginStyles;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\LoginProvider\Event\ModifyPageLayoutOnLoginProviderSelectionEvent;
@@ -32,14 +33,14 @@ final readonly class RandomizeLoginBackground
     #[AsEventListener('typo3-chameleon-login/randomize-background')]
     public function __invoke(ModifyPageLayoutOnLoginProviderSelectionEvent $event): void
     {
-        $configuration = $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login'] ?? [];
+        $settings = ExtensionSettings::fromGlobals();
 
-        $images = (array) ($configuration['loginBackgroundImages'] ?? []);
+        $images = $settings->getArray('loginBackgroundImages');
         if ([] !== $images) {
             $this->addBackgroundImage('typo3-chameleon-login-random-background', $images, $event->getRequest(), false);
         }
 
-        $darkImages = (array) ($configuration['loginBackgroundImagesDark'] ?? []);
+        $darkImages = $settings->getArray('loginBackgroundImagesDark');
         if ([] !== $darkImages) {
             $this->addBackgroundImage('typo3-chameleon-login-random-background-dark', $darkImages, $event->getRequest(), true);
         }

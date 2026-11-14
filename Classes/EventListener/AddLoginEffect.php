@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MoveElevator\Typo3ChameleonLogin\EventListener;
 
+use MoveElevator\Typo3ChameleonLogin\Settings\ExtensionSettings;
 use TYPO3\CMS\Backend\LoginProvider\Event\ModifyPageLayoutOnLoginProviderSelectionEvent;
 use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Page\{JavaScriptModuleInstruction, PageRenderer};
@@ -21,7 +22,7 @@ final readonly class AddLoginEffect
     #[AsEventListener('typo3-chameleon-login/login-effect')]
     public function __invoke(ModifyPageLayoutOnLoginProviderSelectionEvent $event): void
     {
-        $effect = (string) ($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login']['effect'] ?? '');
+        $effect = ExtensionSettings::fromGlobals()->getString('effect');
         if (false === in_array($effect, self::EFFECTS, true)) {
             return;
         }

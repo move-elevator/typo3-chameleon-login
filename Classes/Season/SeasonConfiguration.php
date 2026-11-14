@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace MoveElevator\Typo3ChameleonLogin\Season;
 
 use DateTimeImmutable;
+use MoveElevator\Typo3ChameleonLogin\Settings\ExtensionSettings;
 use MoveElevator\Typo3ChameleonLogin\Style\LoginStyles;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
 use TYPO3\CMS\Core\Resource\FileRepository;
@@ -67,7 +68,7 @@ final readonly class SeasonConfiguration
             $extension['effect'] = $effect;
         }
 
-        $extensions = array_filter(['backend' => $backend, 'typo3_chameleon_login' => $extension]);
+        $extensions = array_filter(['backend' => $backend, ExtensionSettings::KEY => $extension]);
 
         return [] === $extensions ? [] : ['EXTENSIONS' => $extensions];
     }

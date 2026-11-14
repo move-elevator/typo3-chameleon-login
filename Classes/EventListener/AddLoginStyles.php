@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace MoveElevator\Typo3ChameleonLogin\EventListener;
 
 use MoveElevator\Typo3ChameleonLogin\Routing\LoginRoute;
+use MoveElevator\Typo3ChameleonLogin\Settings\ExtensionSettings;
 use MoveElevator\Typo3ChameleonLogin\Style\LoginStyles;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Page\Event\BeforeStylesheetsRenderingEvent;
 
 use function sprintf;
-use function trim;
 
 final class AddLoginStyles
 {
@@ -27,21 +27,21 @@ final class AddLoginStyles
             return;
         }
 
-        $configuration = $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login'] ?? [];
+        $settings = ExtensionSettings::fromGlobals();
         $assetCollector = $event->getAssetCollector();
         $assetCollector->addStyleSheet(
             'typo3-chameleon-login-styles',
             'EXT:typo3_chameleon_login/Resources/Public/Css/Login.css',
         );
 
-        $color = trim((string) ($configuration['loginBackgroundColor'] ?? ''));
+        $color = $settings->getString('loginBackgroundColor');
         if (LoginStyles::isValidColor($color)) {
             $assetCollector->addInlineStyleSheet(
                 'typo3-chameleon-login-bg-color',
                 sprintf(':root { --chameleon-login-bg-color: %s; }', $color),
             );
         }
-        $darkColor = trim((string) ($configuration['loginBackgroundColorDark'] ?? ''));
+        $darkColor = $settings->getString('loginBackgroundColorDark');
         if (LoginStyles::isValidColor($darkColor)) {
             $assetCollector->addInlineStyleSheet(
                 'typo3-chameleon-login-bg-color-dark',
@@ -50,7 +50,7 @@ final class AddLoginStyles
         }
 
         // Rendered after the core's highlight color block, so it overrides it in dark mode
-        $darkHighlightColor = LoginStyles::highlightColorStyles((string) ($configuration['loginHighlightColorDark'] ?? ''));
+        $darkHighlightColor = LoginStyles::highlightColorStyles($settings->getString('loginHighlightColorDark'));
         if ('' !== $darkHighlightColor) {
             $assetCollector->addInlineStyleSheet(
                 'typo3-chameleon-login-highlight-color-dark',
@@ -59,8 +59,8 @@ final class AddLoginStyles
         }
 
         $gradientVariables = LoginStyles::gradientVariables(
-            (array) ($configuration['loginBackgroundGradient'] ?? []),
-            (string) ($configuration['loginBackgroundGradientSpeed'] ?? ''),
+            $settings->getArray('loginBackgroundGradient'),
+            $settings->getString('loginBackgroundGradientSpeed'),
         );
         if ('' !== $gradientVariables) {
             $assetCollector->addStyleSheet(
@@ -69,7 +69,7 @@ final class AddLoginStyles
             );
             $assetCollector->addInlineStyleSheet('typo3-chameleon-login-gradient-variables', $gradientVariables);
 
-            $darkGradient = LoginStyles::gradient((array) ($configuration['loginBackgroundGradientDark'] ?? []));
+            $darkGradient = LoginStyles::gradient($settings->getArray('loginBackgroundGradientDark'));
             if ('' !== $darkGradient) {
                 $assetCollector->addInlineStyleSheet(
                     'typo3-chameleon-login-gradient-variables-dark',
