@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace MoveElevator\Typo3ChameleonLogin\EventListener;
 
+use MoveElevator\Typo3ChameleonLogin\Routing\LoginRoute;
 use MoveElevator\Typo3ChameleonLogin\Style\LoginStyles;
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Page\Event\BeforeStylesheetsRenderingEvent;
 
@@ -13,9 +15,18 @@ use function trim;
 
 final class AddLoginStyles
 {
+    /**
+     * This event is dispatched for every page. The core's login layout event would avoid the route check,
+     * but the password reset and MFA screens don't dispatch it.
+     */
     #[AsEventListener('typo3-chameleon-login/login-styles')]
     public function __invoke(BeforeStylesheetsRenderingEvent $event): void
     {
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        if (!$request instanceof ServerRequestInterface || false === LoginRoute::matches($request)) {
+            return;
+        }
+
         $configuration = $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_chameleon_login'] ?? [];
         $assetCollector = $event->getAssetCollector();
         $assetCollector->addStyleSheet(
